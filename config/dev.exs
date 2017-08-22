@@ -18,7 +18,7 @@ use Mix.Config
 #
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
-# different ports.
+# different ports .
 config :blog, Blog.Endpoint,
   http: [port: 4000],
   debug_errors: true,
