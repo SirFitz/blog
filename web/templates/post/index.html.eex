@@ -12,8 +12,8 @@
   <tbody>
 <%= for post <- @posts do %>
     <tr>
-      <td><%= post.title %></td>
-      <td><%= post.body %></td>
+      <td style="font-size:25px; color:red"><%= post.title %></td>
+      <td style="font-size:20px; color:blue"><%= post.body %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
