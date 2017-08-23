@@ -1,6 +1,6 @@
 defmodule Blog.CommentController do
  use Blog.Web, :controller
- 
+
  alias Blog.Post
 
  def create(conn, %{"comment" => comment_params, "post_id" => post_id}) do
