@@ -1,5 +1,5 @@
 <h2>Listing posts</h2>
-
+<div class="card-panel white" style="border-radius:5px;">
 <table class="table">
   <thead>
     <tr>
@@ -9,20 +9,25 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
-<%= for post <- @posts do %>
-    <tr>
-      <td style="font-size:25px; color:red"><%= post.title %></td>
-      <td style="font-size:20px; color:blue"><%= post.body %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
 </table>
+<br/>
+<%= for post <- @posts do %>
+<div class="row">
+    <div class="col s12 m3">
+      <h5><%= post.title %></h4>
+    </div>
+    <div class="col s12 m6">
+      <p class="truncate"><%= post.body %></p>
+    </div>
+    <div class="col s12 m3">
+        <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "red btn btn-default btn-xs" %></span>
+    </div>
+    <!--<div class="col s12 m2">
+      <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "red btn btn-danger btn-xs" %></span>
+    </div>-->
+</div>
+<% end %>
 
 <span><%= link "New post", to: post_path(@conn, :new) %></span>
+</div>

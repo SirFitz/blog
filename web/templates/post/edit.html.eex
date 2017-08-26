@@ -1,6 +1,11 @@
-<h2>Edit post</h2>
+<div class="z-depth-4 white card-panel" style="padding:20px; border-radius:10px;">
+  <div style="padding:10px;">
+   <h2>Edit post</h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: post_path(@conn, :update, @post) %>
+    <%= render "form.html", changeset: @changeset,
+                            action: post_path(@conn, :update, @post) %>
+                            <br/>
 
-<span><%= link "Back", to: post_path(@conn, :index) %></span>
+    <span > <%= link "Back", to: post_path(@conn, :index), class: "btn btn-primary pink A400"  %> </span>
+  </div>
+</div>
