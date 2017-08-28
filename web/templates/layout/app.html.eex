@@ -63,13 +63,16 @@
       <header class="header">
         <nav role="navigation" style="border-radius:5px;" class="white z-depth-4">
           <div class="nav-wrapper">
-            <img class="brand-logo left" src="https://static1.squarespace.com/static/59462ef51b10e3c4c9653db5/t/595ed7dfc534a5e05a557713" style="max-width:55px; position:relative;"/>
-            <ul class="menu right">
-              <li class"active cyan" style="background-color:green;"><a href="/posts">Home</a></li>
+          <ul>  <li>  <img class="brand-logo left" src="https://static1.squarespace.com/static/59462ef51b10e3c4c9653db5/t/595ed7dfc534a5e05a557713" style="max-height:50px; position:relative;"/> </li>
+                <li> 1-832-829-2822 </li>
+          </ul>
+          <ul class="menu left">
+              <li class"active cyan" style="background-color:#F50057;"><a href="/posts">Home</a></li>
             </ul>
         </div>
         </nav>
       </header>
+      <br/>
 
       <main role="main">
 

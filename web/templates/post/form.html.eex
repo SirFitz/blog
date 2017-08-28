@@ -42,10 +42,10 @@
     <div class="input-field col s12 m12">
       <i class="material-icons prefix" style="color:black;"">mode_edit</i>
       <label style="font-size:20px;" for="body">
-        <h5>Content</h5>
+        <p>Content</p>
       </label>
       <br/><br/>
-      <%= textarea f, :body, class: "form-control materialize-textarea", id: "summernote", rows: "10"%>
+      <%= textarea f, :body, class: "form-control", id: "summernote", rows: "10"%>
     </div>
       <script>
       $(document).ready(function() {
@@ -54,7 +54,7 @@
         minHeight: null,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
         focus: true
-         });
+        });
       });
     </script>
 

@@ -1,9 +1,15 @@
 <div class="white card-panel hoverable" style="border-radius:10px; padding:20px;">
   <div class="row" style="padding-left:20px;">
-    <h2><%= @post.title %></h2>
-
-    <%= @post.body %>
-
+    <div class="col m10">
+      <h2><%= @post.title %></h2>
+    </div>
+    <div class="col m2">
+      <p> Author: <%= @post.author %></p>
+      <p> Word Count: <%= @post.word_count %></p>
+    </div>
+    <div class="col s12" >
+        <%= raw @post.body %>
+    </div>
     <%= render Blog.CommentView, "new.html",
     				conn: @conn,
     				post: @post,
@@ -13,7 +19,7 @@
     	<p class="card-panel hoverable"><%= comment.body %> </p>
     <% end %>
 
-    <span><%= link "Edit", to: post_path(@conn, :edit, @post) %></span>
-    <span><%= link "Back", to: post_path(@conn, :index) %></span>
+    <span><%= link "Edit", to: post_path(@conn, :edit, @post), class: "btn"%></span>
+    <span><%= link "Back", to: post_path(@conn, :index), class: "btn pink A400" %></span>
     </div>
 </div>

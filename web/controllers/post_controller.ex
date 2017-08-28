@@ -3,9 +3,43 @@ defmodule Blog.PostController do
 
   alias Blog.{Post, Comment}
 
-  def index(conn, _params) do
-    posts = Repo.all(Post)
-    render(conn, "index.html", posts: posts)
+  def index(conn, params) do
+
+    IO.inspect params
+    posts = from p in Blog.Post,
+            select: p
+
+    posts =
+      if params["title_search"] != "" and params["title_search"] != nil do
+        posts
+          |> where([p], fragment("? ~* ?", p.title, ^params["title_search"]))
+      else
+        posts
+      end
+
+    IO.inspect posts
+    posts =
+      if params["content_search"] != "" and params["content_search"] != nil do
+        posts
+          |> where([p], fragment("? ~* ?", p.body, ^params["content_search"]))
+      else
+        posts
+      end
+
+    posts =
+      if params["author_search"] != "" and params["author_search"] != nil do
+        posts
+          |> where([p], fragment("? ~* ?", p.author, ^params["author_search"]))
+      else
+        posts
+      end
+
+    {posts, kerosene} =
+      posts
+      |> where([p], is_nil(p.title) == false )
+      |> Repo.paginate()
+
+    render(conn, "index.html", posts: posts, kerosene: kerosene)
   end
 
   def new(conn, _params) do
@@ -14,6 +48,16 @@ defmodule Blog.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
+
+    word_count =
+      Map.get(post_params, "body")
+      |> String.trim()
+      |> String.graphemes()
+      |> Enum.dedup_by(fn(x) -> x end)
+      |> Enum.count(fn(x) -> x == " " end)
+
+    Map.put(post_params, "word_count", word_count)
+
     changeset = Post.changeset(%Post{}, post_params)
 
     case Repo.insert(changeset) do
@@ -41,9 +85,25 @@ defmodule Blog.PostController do
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
-    post = Repo.get!(Post, id)
-    changeset = Post.changeset(post, post_params)
 
+    IO.inspect post_params
+
+    space_count =
+      Map.get(post_params, "body")
+      |> String.trim()
+      |> String.graphemes()
+      |> Enum.dedup_by(fn(x) -> x end)
+      |> Enum.count(fn(x) -> x == " " end)
+
+    word_count = space_count+1
+
+    post_params = Map.put(post_params, "word_count", word_count)
+    IO.inspect post_params
+
+    post = Repo.get!(Post, id)
+
+    changeset = Post.changeset(post, post_params)
+    IO.inspect changeset
     case Repo.update(changeset) do
       {:ok, post} ->
         conn

@@ -1,7 +1,7 @@
 
-			<%= form_for @comment_changeset, post_comment_path(@conn, :create, @post), fn f -> %>
+	<%= form_for @comment_changeset, post_comment_path(@conn, :create, @post), fn f -> %>
 		 <div class="row">
-			<div class="input-field col s3">
+			<div class="input-field col s12 m3">
 				<%= textarea f, :body, class: "form-control materialize-textarea", id: "comment" %>
 				<label style="font-size:20px;" for="body">Comment</label>
 				<%= error_tag f, :body %>
@@ -9,8 +9,8 @@
 			<div class="col s6">
 			<br/><br/>
 			</div>
-			<div class="col s4">
+			<div class="col s12 m4">
 			<%= submit "Submit", class: "btn btn-primary" %>
 			</div>
 		</div>
-		<% end %>
+	<% end %>
