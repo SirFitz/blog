@@ -4,20 +4,65 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
+  <div class="row">
 
-  <div class="form-group">
-    <%= label f, :title, class: "control-label" %>
-    <%= text_input f, :title, class: "form-control" %>
-    <%= error_tag f, :title %>
-  </div>
+  <!--
+    <div class="form-group col s6 m12">
+      <%= label f, :title, class: "control-label" %>
+      <%= text_input f, :title, class: "form-control" %>
+      <%= error_tag f, :title %>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :body, class: "control-label" %>
-    <%= textarea f, :body, class: "form-control" %>
-    <%= error_tag f, :body %>
-  </div>
+    <div class="form-group col s6 m12">
+      <%= label f, :body, class: "control-label" %>
+      <%= textarea f, :body, class: "form-control" %>
+      <%= error_tag f, :body %>
+    </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <div class="col s12 m6">
+      <label>
+        Start Date
+        <input type="date" name="date" />
+      </label>
+    </div> -->
+
+    <div class="input-field col s12 m6">
+      <i class="material-icons prefix">mode_edit</i>
+      <%= text_input f, :title, class: "form-control", id: "title" %>
+      <label style="font-size:20px;" for="title">Title</label>
+    </div>
+
+    <div class="input-field col s12 m6" >
+      <i class="material-icons prefix" >account_circle</i>
+      <%= text_input f, :author, class: "form-control", id: "author" %>
+      <label style="font-size:20px;" for="author">Author</label>
+    </div>
+
+
+    <div class="input-field col s12 m12">
+      <i class="material-icons prefix" style="color:black;"">mode_edit</i>
+      <label style="font-size:20px;" for="body">
+        <p>Content</p>
+      </label>
+      <br/><br/>
+      <%= textarea f, :body, class: "form-control", id: "summernote", rows: "10"%>
+    </div>
+      <script>
+      $(document).ready(function() {
+         $('#summernote').summernote({
+         height: 300,                 // set editor height
+        minHeight: null,             // set minimum height of editor
+        maxHeight: null,             // set maximum height of editor
+        focus: true
+        });
+      });
+    </script>
+
+
+    <div class="input-field col s12 m6 l4 xl2"
+      <span>
+        	<%= submit "Submit", class: "btn btn-primary waves-effect waves-light cyan" %>
+      </span>
+    </div>
   </div>
 <% end %>

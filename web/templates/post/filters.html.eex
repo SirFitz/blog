@@ -1,0 +1,31 @@
+
+<%= form_tag "#{@action}" do %>
+  <h5> Filters </h5>
+  <div class="input-field col s12 m3">
+    <i class="material-icons prefix">search</i>
+    <input id="icon_prefix" type="text" class="validate" placeholder="Search Titles" name="title_search">
+  </div>
+  <div class="input-field col s12 m3">
+    <i class="material-icons prefix">vpn_key</i>
+    <input id="icon_prefix" type="text" class="validate" placeholder="Search Keywords" name="content_search">
+  </div>
+  <div class="input-field col s12 m3">
+    <i class="material-icons prefix">bookmark_border</i>
+    <input id="icon_prefix" type="text" class="validate" placeholder="Search Tags" name="tags_search">
+  </div>
+  <div class="input-field col s12 m3">
+    <i class="material-icons prefix">comment</i>
+    <input id="icon_prefix" type="text" class="validate" placeholder="Search Comments" name="comments_search">
+  </div>
+  <div class="input-field col s12 m3">
+    <i class="material-icons prefix">person_outline</i>
+    <input id="icon_prefix" type="text" class="validate" placeholder="Search Author" name="author_search">
+  </div>
+</div>
+
+<div class="input-field col s12 m6 l4 xl2"
+  <span>
+      <%= submit "Submit", class: "btn btn-primary waves-effect waves-light cyan" %>
+  </span>
+</div>
+<% end %>
