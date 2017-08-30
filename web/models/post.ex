@@ -11,6 +11,7 @@ defmodule Blog.Post do
     field :publish_date, :date
     field :end_date, :date
     field :tags, :string
+    field :likes, :integer
     has_many :comments, Blog.Comment
 
     timestamps()

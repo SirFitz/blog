@@ -36,7 +36,10 @@
       <i class="material-icons prefix" >account_circle</i>
       <%= text_input f, :author, class: "form-control", id: "author" %>
       <label style="font-size:20px;" for="author">Author</label>
+      <br/>
     </div>
+
+
 
 
     <div class="input-field col s12 m12">
@@ -58,10 +61,17 @@
       });
     </script>
 
+    <div class="input-field col s12 m6">
+      <i class="material-icons prefix">mode_edit</i>
+      <%= text_input f, :tags, class: "form-control", id: "tags",  placeholder: "Place a comma between each tag like this: tag1,tag2" %>
+      <label style="font-size:20px;" for="tags">Tags</label>
+      <br/>
+      <br/>
+    </div>
 
-    <div class="input-field col s12 m6 l4 xl2"
+    <div class="input-field col s12"
       <span>
-        	<%= submit "Submit", class: "btn btn-primary waves-effect waves-light cyan" %>
+        	<%= submit "Submit", class: "submit btn btn-primary waves-effect waves-light cyan" %>
       </span>
     </div>
   </div>

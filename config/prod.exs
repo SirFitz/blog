@@ -13,16 +13,14 @@ use Mix.Config
 # which you typically run after static files are built.
 config :blog, Blog.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "limitless-journey-53056.herokuapp", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  url: [scheme: "http", host: "blog.romariofitzgerald.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 config :blog, Blog.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  ssl: true
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -34,7 +32,7 @@ config :logger, level: :info
 #
 #     config :blog, Blog.Endpoint,
 #       ...
-#       url: [host: "example.com", port: 443],
+#       url: [host: "limitless-journey-53056.herokuapp.com", port: 443],
 #       https: [:inet6,
 #               port: 443,
 #               keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
