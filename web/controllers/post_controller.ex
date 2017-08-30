@@ -57,8 +57,8 @@ defmodule Blog.PostController do
       |> Enum.count(fn(x) -> x == " " end)
 
     Map.put(post_params, "word_count", word_count)
-
-    changeset = Post.changeset(%Post{}, post_params)
+    IO.inspect post_params
+    IO.inspect changeset = Post.changeset(%Post{}, post_params)
 
     case Repo.insert(changeset) do
       {:ok, post} ->
@@ -98,7 +98,6 @@ defmodule Blog.PostController do
     word_count = space_count+1
 
     post_params = Map.put(post_params, "word_count", word_count)
-    IO.inspect post_params
 
     post = Repo.get!(Post, id)
 

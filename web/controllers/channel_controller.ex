@@ -63,7 +63,7 @@ defmodule Blog.ChannelController do
     channel = Repo.get_by(Channel,  id: params["id"])
     render conn, "edit.html", channel: channel
   end
-  
+
   def update(conn,params) do
     channel = Repo.get!(Channel, params["id"])
     #if params["type"] == "" do type = channel.type else type = params["type"] end
@@ -101,7 +101,7 @@ defmodule Blog.ChannelController do
       nil -> "You cannot delete the channel"
       channel ->
 
-       case Data.Repo.delete(channel) do
+       case Repo.delete(channel) do
         {:ok, struct}       -> IO.inspect struct
         {:error, changeset} -> IO.inspect changeset
        end

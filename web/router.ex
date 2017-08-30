@@ -31,6 +31,7 @@ defmodule Blog.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+<<<<<<< HEAD
     get "/signup", AuthController, :signup
     get "/login", AuthController, :login
     post "/signin", AuthController, :signin
@@ -43,6 +44,13 @@ defmodule Blog.Router do
   end
 
 
+=======
+    post "/posts/new", PostController, :create
+    post "/posts", PostController, :index
+    resources "/posts/", PostController do
+    	resources "/comments", CommentController, only: [:create]
+    end
+>>>>>>> 126e765f2126eb0a30fcb89460f29b7a41004e80
   end
 
   # Other scopes may use custom stacks.
