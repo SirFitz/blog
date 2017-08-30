@@ -2,6 +2,9 @@
 <h4>  <%= @channel.name %> </h4>
 </div>
 
+<!-- Modal Trigger -->
+ <a class="waves-effect waves-light btn" href="/channels/postform">Create Post</a>
+
 
 <main class="  post-cards" role="main">
 

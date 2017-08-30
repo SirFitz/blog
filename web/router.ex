@@ -18,6 +18,7 @@ defmodule Blog.Router do
 
     get "/create", ChannelController, :create_view
     post "/create", ChannelController, :create
+    get "/postform", ChannelController, :form
     get "/view", ChannelController, :view
     get "/search", ChannelController, :search
     get "/edit/:id", ChannelController, :edit

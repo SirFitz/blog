@@ -16,8 +16,8 @@ defmodule Blog.User do
 
     timestamps()
   end
-  @required_fields [:username, :email, :zid, :password]
-  @optional_fields [:phone, :meta1, :meta2, :details, :address, :name]
+  @required_fields [:zid]
+  @optional_fields [:phone, :meta1, :meta2, :details, :address, :name, :username, :email, :password]
 
   @doc """
   Builds a changeset based on the `struct` and `params`.

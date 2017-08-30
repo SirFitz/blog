@@ -16,6 +16,11 @@ defmodule Blog.ChannelController do
     render(conn, "channel.html", channel: channel)
   end
 
+  def form(conn, params) do
+    channel = Repo.get_by(Channel,  id: params["id"] )
+    render(conn, "channel_post.html", channel: channel)
+  end
+
   def create_view(conn, params) do
     changeset = Channel.changeset(%Channel{})
     render(conn, "create.html", changeset: changeset,params: params)

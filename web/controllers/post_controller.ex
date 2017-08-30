@@ -3,18 +3,17 @@ defmodule Blog.PostController do
 
   alias Blog.{Post, Comment, User}
 
-
-
+  
   def cookie(conn, params) do
-    cookie = conn.cookies["user"] || Ecto.UUID.generate
-    case UUID.info(cookie) do
+    cookie = conn.cookies["user"]
+    case cookie != nil do
       {:ok, body} ->
       assign(conn, :user, cookie)
       {:error, reason} ->
       cookie = Ecto.UUID.generate
       conn
         |> put_resp_cookie("user", cookie, path: "/", max_age: (86400 * 3600))
-            assign(conn, :user, cookie)
+      assign(conn, :user, cookie)
     end
   end
 
