@@ -3,26 +3,18 @@ defmodule Blog.PostController do
 
   alias Blog.{Post, Comment, User}
 
-  plug :cookie
+
 
   def cookie(conn, params) do
     cookie = conn.cookies["user"] || Ecto.UUID.generate
-    if user = Repo.get_by(Blog.User, uid: cookie) do
-      assign(conn, :user, user)
-    else
+    case UUID.info(cookie) do
+      {:ok, body} ->
+      assign(conn, :user, cookie)
+      {:error, reason} ->
       cookie = Ecto.UUID.generate
       conn
-        |> put_resp_cookie("user", cookie, path: "/", max_age: (86400 * 360))
-
-        new_user = Map.put(%{}, :uid, cookie)
-        IO.inspect changeset = User.changeset(%User{}, new_user)
-
-        case Repo.insert(changeset) do
-          {:ok, post} ->
-            assign(conn, :user, user)
-          {:error, changeset} ->
-            render(conn, "new.html", changeset: changeset)
-        end
+        |> put_resp_cookie("user", cookie, path: "/", max_age: (86400 * 3600))
+            assign(conn, :user, cookie)
     end
   end
 

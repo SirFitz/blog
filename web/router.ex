@@ -34,15 +34,11 @@ defmodule Blog.Router do
     get "/signup", AuthController, :signup
     get "/login", AuthController, :login
     post "/signin", AuthController, :signin
-    post "/post/new", PostController, :create
-    post "/posts", PostController, :index
     post "/user/create", AuthController, :create_user
-    resources "/posts", PostController do
-    resources "/comments", CommentController, only: [:create]
-
-  end
-
-
+    post "/posts", PostController, :index
+    resources "/posts/", PostController do
+      resources "/comments", CommentController, only: [:create]
+    end
   end
 
   # Other scopes may use custom stacks.
