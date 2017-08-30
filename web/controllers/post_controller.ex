@@ -1,7 +1,22 @@
 defmodule Blog.PostController do
   use Blog.Web, :controller
 
-  alias Blog.{Post, Comment}
+  alias Blog.{Post, Comment, User}
+
+
+
+  def cookie(conn, params) do
+    cookie = conn.cookies["user"] || Ecto.UUID.generate
+    case UUID.info(cookie) do
+      {:ok, body} ->
+      assign(conn, :user, cookie)
+      {:error, reason} ->
+      cookie = Ecto.UUID.generate
+      conn
+        |> put_resp_cookie("user", cookie, path: "/", max_age: (86400 * 3600))
+            assign(conn, :user, cookie)
+    end
+  end
 
   def index(conn, params) do
 
@@ -34,10 +49,62 @@ defmodule Blog.PostController do
         posts
       end
 
+    posts =
+      if params["tags_search"] != "" and params["tags_search"] != nil do
+        posts
+          |> where([p], fragment("? ~* ?", p.tags, ^params["tags_search"]))
+      else
+        posts
+      end
+
+  #  posts =
+  #    if params["date_search"] != "" and params["date_search"] != nil do
+  #      posts
+  #        |> where([p], String.contains?(Ecto.DateTime.to_string(p.inserted_at), ^params["date_search"]))
+  #    else
+  #      posts
+  #    end
+
+    posts =
+      if params["likes_search"] != "" and params["likes_search"] != nil do
+        likes = String.split(params["likes_search"], "-")
+      IO.inspect  ulikes = Enum.at(likes, 0)
+      IO.inspect  olikes = Enum.at(likes, 1)
+        posts
+          |> where([p], p.likes > ^ulikes and p.likes < ^olikes)
+      else
+        posts
+      end
+
+    posts =
+      if params["ratings_sort"] != "" and params["ratings_sort"] != nil do
+        order = params["ratings_sort"]
+        posts
+          |> order_by([p], desc: p.likes)
+      else
+        posts
+      end
+
+    posts =
+      if params["comments_search"] != "" and params["comments_search"] != nil do
+
+        comments =
+              Blog.Comment
+                |> where([c], fragment("? ~* ?", c.body, ^params["comments_search"]))
+                |> Blog.Repo.all
+
+
+        post_ids = Enum.map(comments, fn(x) -> Map.get(x, :post_id) end)
+        posts
+          |> where([p], p.id in ^post_ids)
+      else
+        posts
+      end
+
     {posts, kerosene} =
       posts
       |> where([p], is_nil(p.title) == false )
-      |> Repo.paginate()
+      |> Repo.paginate(params)
 
     render(conn, "index.html", posts: posts, kerosene: kerosene)
   end
@@ -49,14 +116,20 @@ defmodule Blog.PostController do
 
   def create(conn, %{"post" => post_params}) do
 
-    word_count =
+    space_count =
       Map.get(post_params, "body")
       |> String.trim()
       |> String.graphemes()
       |> Enum.dedup_by(fn(x) -> x end)
       |> Enum.count(fn(x) -> x == " " end)
 
+<<<<<<< HEAD
     Map.put(post_params, "word_count", word_count)
+=======
+    word_count = space_count+1
+
+    post_params = Map.put(post_params, "word_count", word_count)
+>>>>>>> master
     IO.inspect post_params
     IO.inspect changeset = Post.changeset(%Post{}, post_params)
 

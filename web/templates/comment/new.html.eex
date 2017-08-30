@@ -3,7 +3,7 @@
 		 <div class="row">
 			<div class="input-field col s12 m3">
 				<%= textarea f, :body, class: "form-control materialize-textarea", id: "comment" %>
-				<label style="font-size:20px;" for="body">Comment</label>
+				<label style="font-size:20px; color:black;" for="body">Comment</label>
 				<%= error_tag f, :body %>
 			</div>
 			<div class="col s6">
