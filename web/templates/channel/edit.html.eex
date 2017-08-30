@@ -1,0 +1,43 @@
+<div class="container " style ="background-color: white;">
+  <div class="col s12">
+    <h5 class="center-align"><%= @channel.name %></h5>
+    <p class="center-align flow-text">
+      Created: <%= Timex.from_now(NaiveDateTime.to_erl(@channel.inserted_at)) %>
+
+    </p>
+    <form action="/channels/update/<%= @channel.id %>" method="POST">
+      <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" name="name" class="validate" value="<%=@channel.name%>">
+          <label for="icon_prefix">Name</label>
+        </div>
+      </div>
+
+
+      <div class="input-field col s6">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">Private</option>
+          <option value="2">Public</option>
+        </select>
+        <label>Privacy</label>
+       </div>
+       <div class="row">
+         <div class="input-field col s12">
+           <textarea id="summary" name="summary" class="materialize-textarea" value="<%=@channel.summary%>"></textarea>
+           <label for="summary">Summary</label>
+         </div>
+       </div>
+
+      <!-- be sure to properly check boxes that this person belong to -->
+
+      <Br/>
+      <p class="center-align">
+        <button class="btn-large" type="submit">SAVE</button>
+      </p>
+
+  </div>
+</div>
+</form>

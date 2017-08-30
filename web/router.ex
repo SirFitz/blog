@@ -13,14 +13,36 @@ defmodule Blog.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/channels", Blog do
+    pipe_through :browser # Use the default browser stack
+
+    get "/create", ChannelController, :create_view
+    post "/create", ChannelController, :create
+    get "/view", ChannelController, :view
+    get "/search", ChannelController, :search
+    get "/edit/:id", ChannelController, :edit
+    post "/update/:id", ChannelController, :update
+    get "/leave/:channel_id/:user_id", ChannelController, :leave
+    get "/delete/:id", ChannelController, :delete
+    get "/:id" , ChannelController, :index
+  end
+
   scope "/", Blog do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/signup", AuthController, :signup
+    get "/login", AuthController, :login
+    post "/signin", AuthController, :signin
+    post "/post/new", PostController, :create
     post "/posts", PostController, :index
+    post "/user/create", AuthController, :create_user
     resources "/posts", PostController do
-    	resources "/comments", CommentController, only: [:create]
-    end
+    resources "/comments", CommentController, only: [:create]
+
+  end
+
+
   end
 
   # Other scopes may use custom stacks.

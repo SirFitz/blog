@@ -1,6 +1,6 @@
 defmodule Blog.Mixfile do
   use Mix.Project
- 
+
   def project do
     [
       app: :blog,
@@ -20,7 +20,7 @@ defmodule Blog.Mixfile do
   def application do
     [
       mod: {Blog, []},
-      extra_applications: [:logger]
+      extra_applications: [:logger, :comeonin]
     ]
   end
 
@@ -41,8 +41,12 @@ defmodule Blog.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
+      {:timex, "~> 3.1.13"},
+      {:timex_ecto, "~> 3.0"},
       {:html_sanitize_ex, "~> 1.3.0-rc3"},
-      {:kerosene, "~> 0.7.0"}
+      {:kerosene, "~> 0.7.0"},
+      {:comeonin, "~> 4.0"}
+
     ]
   end
 
