@@ -26,8 +26,12 @@ defmodule Blog.Router do
     post "/create", ChannelController, :create
     post "/create/posts/:channel_id", ChannelController, :create_post
     get "/postform/:channel_id", ChannelController, :form
+    get "/view/members/:channel_id", ChannelController, :view_members
+    get "/channels/members/:channel_id/:member_id", ChannelController, :delete_members
     get "/view", ChannelController, :view
     get "/search", ChannelController, :search
+    get "/join/:channel_id", ChannelController, :join
+
     get "/edit/:id", ChannelController, :edit
     post "/update/:id", ChannelController, :update
     get "/leave/:channel_id/:user_id", ChannelController, :leave

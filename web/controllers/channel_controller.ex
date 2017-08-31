@@ -14,8 +14,10 @@ defmodule Blog.ChannelController do
 
   def index(conn, params) do
     channel = Repo.get_by(Channel,  id: params["id"] )
+    current_user = Repo.get_by(User, zid: conn.cookies["bloguser"])
+
     posts = Repo.all(from p in Post, where: p.channel_id == ^channel.id)
-    render(conn, "channel.html", channel: channel, posts: posts)
+    render(conn, "channel.html", channel: channel, posts: posts, user: current_user)
   end
 
   def form(conn, params) do
@@ -30,9 +32,9 @@ defmodule Blog.ChannelController do
   end
   def create(conn, params) do
     IO.inspect params
-    current_user = conn.cookies["bloguser"]
+    current_user = Repo.get_by(User, zid: conn.cookies["bloguser"])
     name = "#" <> String.strip(params["name"]) |> String.split(" ") |> Enum.map( &String.capitalize/1 )|> Enum.join(" ")
-    required_params = %{creator_id: 1, summary: params["summary"], type: params["type"],   name: name}
+    required_params = %{creator_id: current_user.id, summary: params["summary"], type: params["type"],   name: name}
     changeset = Channel.changeset(%Channel{}, required_params)
     case Blog.Repo.insert(changeset) do
      {:ok, channel} ->
@@ -50,20 +52,21 @@ defmodule Blog.ChannelController do
 
   def view(conn, params) do
     # get all the channels that this user is apart of-
-    current_user = conn.cookies["bloguser"]
+    current_user = Repo.get_by(User, zid: conn.cookies["bloguser"])
 
-    query = from c in Channel, join: u in UserChannel, where: c.id == u.channel_id and u.user_id == 1
+    query = from c in Channel, join: u in UserChannel, where: c.id == u.channel_id  and  is_nil(c.type),  distinct: c.id
     channels = Repo.all(query)
     # IO.inspect subscribers
-    render conn, "viewlist.html",  channels: channels
+    render conn, "viewlist.html",  channels: channels, user: current_user
   end
 
   def search(conn, params) do
+    current_user = Repo.get_by(User, zid: conn.cookies["bloguser"])
 
     cname = String.strip(params["name"]) |> String.split(" ") |> Enum.map( &String.capitalize/1 )|> Enum.join(" ")
-    query = from c in Channel, join: u in UserChannel, where:  fragment("? ~* ?", c.name, ^cname) and c.id == u.channel_id and u.user_id == 1
+    query = from c in Channel, join: u in UserChannel, where:  fragment("? ~* ?", c.name, ^cname) and c.id == u.channel_id and  is_nil(c.type), distinct: c.id
     channels =  Repo.all(query)
-    render conn, "viewlist.html",  channels: channels
+    render conn, "viewlist.html",  channels: channels, user: current_user
 
   end
 
@@ -95,11 +98,15 @@ defmodule Blog.ChannelController do
     #or request to join
     # first check that the channel is public
 
-    channel = Repo.get_by(Channel,  id: params["id"])
-    current_user = conn.cookies["bloguser"]
+    channel = Repo.get_by(Channel,  id: params["channel_id"])
+    current_user = Repo.get_by(User, zid: conn.cookies["bloguser"])
     unless channel.type == "private" do
-      changeset = UserChannel.changeset(%UserChannel{}, %{channel_id: channel.id, user_id: 1, status: "active"})
+      changeset = UserChannel.changeset(%UserChannel{}, %{channel_id: channel.id, user_id: current_user.id, status: "active"})
       Blog.Repo.insert(changeset)
+      conn
+      |> put_flash(:info, "Joined successfully.")
+      |> redirect(to: "/channels/" <> params["channel_id"])
+
 
     end
   end
@@ -118,6 +125,7 @@ defmodule Blog.ChannelController do
   end
 
   def leave(conn, params) do
+
     case  Repo.get_by(UserChannel,  channel_id: params["channel_id"], user_id: params["user_id"]) do
       nil -> "You cannot delete the channel"
       channel ->
@@ -126,6 +134,8 @@ defmodule Blog.ChannelController do
         {:ok, struct}       -> IO.inspect struct
         {:error, changeset} -> IO.inspect changeset
        end
+       conn
+       |> redirect(to: "/channels/view")
     end
   end
 
@@ -191,16 +201,21 @@ defmodule Blog.ChannelController do
   end
 
   def view_members(conn, params) do
-    members = Repo.all( from u in UserChannel, join: user in Users, where: user.id == u.user_id and u.channel_id == ^params["channel_id"], select: u.name )
-    render(conn, "members.html", members: members)
+    channel = Repo.get_by(Channel, id: params["channel_id"])
+
+    members = Repo.all( from user in User, join: u in UserChannel, where: user.id == u.user_id and u.channel_id == ^params["channel_id"])
+    render(conn, "view_members.html", members: members, channel: channel)
   end
 
   def delete_members(conn, params) do
       # if you are the creator of the group you can delete anyone
       channel = Repo.get_by(Channel, id: params["channel_id"])
       if conn.asigns["current_user"].id  == channel.creator_id do
-        case  Repo.get_by(UserChannel,  channel_id: params["channel_id"], user_id: params["user_id"]) do
+        case  Repo.get_by(UserChannel,  channel_id: params["channel_id"], user_id: params["member_id"]) do
           nil -> "You cannot delete the member"
+          conn
+          |> put_flash(:info, "You Cannot delete this member.")
+          |> redirect(to: "/")
           userchannel ->
 
            case Repo.delete(userchannel) do

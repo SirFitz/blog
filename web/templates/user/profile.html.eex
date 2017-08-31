@@ -13,7 +13,7 @@
   <div class="container bio ">
     <div class="row">
 			<div class="title">
-				<h6>Biography</h6>
+				<p style="font-size: 19px;">Biography</p>
 			</div>
 			<div >
         <%= if is_nil(@user.bio) do %>
@@ -53,8 +53,15 @@
 
 
 <div class = "container">
-  <div class="title">
-    <h6>Channels</h6>
+  <div class = "row">
+    <div class="col s12">
+      <p style="font-size: 19px;">Channels
+
+        <a href = "/channels/view" class="waves-effect waves-light btn right" style="font-size: 12px; width: 15%;" >View All</a>
+      </p>
+
+    </div>
+
   </div>
   <div class="row">
          <div class="col s2 m4 l6" style="border: solid thin light-grey;">
@@ -78,7 +85,7 @@
     <hr/>
   <div class="container likes">
 		<div class="title">
-			<h6>Likes</h6>
+      <p style="font-size: 19px;">Likes</p>
 		</div>
 		<div class="row">
     		<div class="col s12">
@@ -245,6 +252,7 @@
           </div>
         </footer>
 </div>
+<div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
 <script> (function($) {
