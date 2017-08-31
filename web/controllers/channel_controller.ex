@@ -6,6 +6,7 @@ defmodule Blog.ChannelController do
   use Blog.Web, :controller
   import Ecto.Query
   alias Blog.User
+  alias Blog.Post
   alias Blog.Channel
   alias Blog.Repo
   alias Blog.UserChannel
@@ -13,11 +14,12 @@ defmodule Blog.ChannelController do
 
   def index(conn, params) do
     channel = Repo.get_by(Channel,  id: params["id"] )
-    render(conn, "channel.html", channel: channel)
+    posts = Repo.all(from p in Post, where: p.channel_id == ^channel.id)
+    render(conn, "channel.html", channel: channel, posts: posts)
   end
 
   def form(conn, params) do
-    channel = Repo.get_by(Channel,  id: params["id"] )
+    channel = Repo.get_by(Channel,  id: params["channel_id"] )
     render(conn, "channel_post.html", channel: channel)
   end
 
@@ -29,7 +31,8 @@ defmodule Blog.ChannelController do
   def create(conn, params) do
     IO.inspect params
     current_user = conn.cookies["bloguser"]
-    required_params = %{creator_id: 1, summary: params["summary"], type: "private",   name: String.strip(params["name"]) |> String.split(" ") |> Enum.map( &String.capitalize/1 )|> Enum.join(" ")}
+    name = "#" <> String.strip(params["name"]) |> String.split(" ") |> Enum.map( &String.capitalize/1 )|> Enum.join(" ")
+    required_params = %{creator_id: 1, summary: params["summary"], type: params["type"],   name: name}
     changeset = Channel.changeset(%Channel{}, required_params)
     case Blog.Repo.insert(changeset) do
      {:ok, channel} ->
@@ -91,6 +94,7 @@ defmodule Blog.ChannelController do
   def join(conn, params) do
     #or request to join
     # first check that the channel is public
+
     channel = Repo.get_by(Channel,  id: params["id"])
     current_user = conn.cookies["bloguser"]
     unless channel.type == "private" do
@@ -100,6 +104,18 @@ defmodule Blog.ChannelController do
     end
   end
 
+  def like(conn, params) do
+    user = Repo.get_by(User, id: params["person_id"])
+    likes = user.likes + 1
+    changeset = User.changeset(user, %{likes: likes})
+    Repo.update(changeset)
+  end
+  def unlike(conn, params) do
+    user = Repo.get_by(User, id: params["person_id"])
+    likes = user.likes - 1
+    changeset = User.changeset(user, %{likes: likes})
+    Repo.update(changeset)
+  end
 
   def leave(conn, params) do
     case  Repo.get_by(UserChannel,  channel_id: params["channel_id"], user_id: params["user_id"]) do
@@ -132,17 +148,69 @@ defmodule Blog.ChannelController do
     end
   end
 
+  def create_post(conn, params) do
+    user = Repo.get_by(User, id: 1)
+    post_params = %{"body" => params["body"], "channel_id" => params["channel_id"],  "tags" => params["tags"], "title" => params["title"]}
+    space_count =
+      params["body"]
+      |> String.trim()
+      |> String.graphemes()
+      |> Enum.dedup_by(fn(x) -> x end)
+      |> Enum.count(fn(x) -> x == " " end)
+
+    word_count = space_count+1
+    post_params = Map.put(post_params, "word_count", word_count)
+    post_params = Map.put(post_params, "author", user.name)
+
+    IO.inspect post_params
+    IO.inspect changeset = Post.changeset(%Post{}, post_params)
+
+    case Repo.insert(changeset) do
+      {:ok, post} ->
+        conn
+        |> put_flash(:info, "Post created successfully.")
+        |> redirect(to: post_path(conn, :show, post))
+      {:error, changeset} -> IO.puts "Oops"
+        render(conn, "channel_post.html", changeset: changeset)
+    end
+  end
+
   def invite(conn, params) do
-
+    channel = Repo.get_by(Channel, id: params["channel_id"])
+    render(conn, "invite.html", channel: channel)
   end
 
-  def post(conn, params) do
-
+  def send_invite(conn, params) do
+    #
   end
+
+
 
   def notify(conn, params) do
 
   end
+
+  def view_members(conn, params) do
+    members = Repo.all( from u in UserChannel, join: user in Users, where: user.id == u.user_id and u.channel_id == ^params["channel_id"], select: u.name )
+    render(conn, "members.html", members: members)
+  end
+
+  def delete_members(conn, params) do
+      # if you are the creator of the group you can delete anyone
+      channel = Repo.get_by(Channel, id: params["channel_id"])
+      if conn.asigns["current_user"].id  == channel.creator_id do
+        case  Repo.get_by(UserChannel,  channel_id: params["channel_id"], user_id: params["user_id"]) do
+          nil -> "You cannot delete the member"
+          userchannel ->
+
+           case Repo.delete(userchannel) do
+            {:ok, struct}       -> IO.inspect struct
+            {:error, changeset} -> IO.inspect changeset
+           end
+        end
+      end
+  end
+
   def share(conn,params) do
 
   end
@@ -151,11 +219,4 @@ defmodule Blog.ChannelController do
 
   end
 
-  def view_members(conn, params) do
-
-  end
-
-  def delete_members(conn, params) do
-
-  end
 end

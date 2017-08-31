@@ -13,12 +13,19 @@ defmodule Blog.Router do
     plug :accepts, ["json"]
   end
 
+
+  scope "/users", Blog do
+    pipe_through :browser # Use the default browser stack
+    get "/profile/:zid", UserController, :profile
+
+  end
   scope "/channels", Blog do
     pipe_through :browser # Use the default browser stack
 
     get "/create", ChannelController, :create_view
     post "/create", ChannelController, :create
-    get "/postform", ChannelController, :form
+    post "/create/posts/:channel_id", ChannelController, :create_post
+    get "/postform/:channel_id", ChannelController, :form
     get "/view", ChannelController, :view
     get "/search", ChannelController, :search
     get "/edit/:id", ChannelController, :edit
@@ -27,6 +34,8 @@ defmodule Blog.Router do
     get "/delete/:id", ChannelController, :delete
     get "/:id" , ChannelController, :index
   end
+
+
 
   scope "/", Blog do
     pipe_through :browser # Use the default browser stack

@@ -10,6 +10,7 @@ defmodule Blog.Post do
     field :word_count, :integer
     field :publish_date, :date
     field :end_date, :date
+    field :channel_id, :integer
     field :tags, :string
     field :likes, :integer
     has_many :comments, Blog.Comment

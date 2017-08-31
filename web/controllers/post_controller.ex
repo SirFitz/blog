@@ -3,7 +3,7 @@ defmodule Blog.PostController do
 
   alias Blog.{Post, Comment, User}
 
-  
+
   def cookie(conn, params) do
     cookie = conn.cookies["user"]
     case cookie != nil do
@@ -20,7 +20,7 @@ defmodule Blog.PostController do
   def index(conn, params) do
 
     IO.inspect params
-    posts = from p in Blog.Post,
+    posts = from p in Blog.Post, where: is_nil(p.channel_id),
             select: p
 
     posts =

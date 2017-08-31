@@ -6,6 +6,7 @@ defmodule Blog.AuthController do
   use Blog.Web, :controller
   import Ecto.Query
   alias Blog.User
+  import Plug.Conn
 
   def signup(conn, params) do
     changeset = User.changeset(%User{})
@@ -14,14 +15,15 @@ defmodule Blog.AuthController do
   end
 
   def create_user(conn, user_params) do
+    hashed_password = Hasher.salted_password_hash(user_params["password"])
 
-    required_params = %{zid: Ecto.UUID.generate,   username: String.strip(user_params["username"]) |> String.split(" ") |> Enum.map( &String.capitalize/1 )|> Enum.join(" "), email: String.downcase(user_params["email"]), password: user_params["password"], name: IO.inspect String.strip(user_params["name"]) |> String.split(" ") |> Enum.map( &String.capitalize/1 )|> Enum.join(" ")}
+    required_params = %{zid: Ecto.UUID.generate,    email: String.downcase(user_params["email"]), password: hashed_password, name: IO.inspect String.strip(user_params["name"]) |> String.split(" ") |> Enum.map( &String.capitalize/1 )|> Enum.join(" ")}
     changeset = User.changeset(%User{}, required_params)
     case Repo.insert(changeset) do
      {:ok, user} ->
        conn
        |> put_flash(:info, "User created successfully.")
-       |> redirect(to: "/")
+       |> redirect(to: "/users/profile/" <> user.zid)
        Webapp.Mailer.send_welcome_email(user.email)
      {:error, changeset} ->
        IO.inspect changeset
@@ -38,22 +40,31 @@ defmodule Blog.AuthController do
   def signin(conn,  user_params) do
     email = String.strip(String.downcase(user_params["email"]))
     password = String.strip(user_params["password"])
+
     time_in_secs_from_now = 86400 * 90
-    user = Repo.get_by(User, email: email, password: password )
+    user = Repo.get_by(User, email: email )
 
     cond do
-      user ->
+      user && Hasher.check_password_hash(user_params["password"], user.password) ->
+
           conn
            |> delete_resp_cookie("bloguser")
+           |> delete_resp_cookie("bloguser")
            |> put_resp_cookie("bloguser", user.zid, max_age: time_in_secs_from_now)
+           |> assign( :current_user, user)
            |> put_flash(:info, "Logged in")
-           |> redirect(to: "/")
+           |> redirect(to: "/users/profile/" <> user.zid )
 
 
-      is_nil(user)->
+    user->
           conn
-          |> put_flash(:error,"No user found")
+          |> put_flash(:error,"Wrong password")
           |> render("login.html")
+
+      true ->
+        conn
+        |> put_flash(:error,"No user found")
+        |> render("login.html")
     end
 end
 

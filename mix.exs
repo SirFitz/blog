@@ -43,6 +43,7 @@ defmodule Blog.Mixfile do
       {:cowboy, "~> 1.0"},
       {:timex, "~> 3.1.13"},
       {:timex_ecto, "~> 3.0"},
+      {:hasher, "~> 0.1.0"},
       {:html_sanitize_ex, "~> 1.3.0-rc3"},
       {:kerosene, "~> 0.7.0"},
       {:comeonin, "~> 4.0"}
