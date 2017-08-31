@@ -15,8 +15,14 @@ defmodule Blog.ChannelController do
   def index(conn, params) do
     channel = Repo.get_by(Channel,  id: params["id"] )
     current_user = Repo.get_by(User, zid: conn.cookies["bloguser"])
-
-    posts = Repo.all(from p in Post, where: p.channel_id == ^channel.id)
+    posts_list = Repo.all(from p in Post, where: p.channel_id == ^channel.id)
+    posts =
+      if Enum.count(posts_list) > 0 do
+        Repo.all(from p in Post, where: p.channel_id == ^channel.id)
+      else
+        nil
+      end
+    IO.inspect posts
     render(conn, "channel.html", channel: channel, posts: posts, user: current_user)
   end
 
