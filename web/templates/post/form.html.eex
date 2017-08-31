@@ -39,18 +39,19 @@
       <br/>
     </div>
 
-
-
-
     <div class="input-field col s12 m12">
       <i class="material-icons prefix" style="color:black;"">mode_edit</i>
       <label style="font-size:20px;" for="body">
         <p>Content</p>
       </label>
       <br/><br/>
-      <%= textarea f, :body, class: "form-control", id: "summernote", rows: "10"%>
+      <%= textarea f, :body, class: "form-control", id: "body", rows: "10"%>
     </div>
-      <script>
+    <script>
+        CKEDITOR.replace( 'body' );
+    </script>
+
+<!-- <script>
       $(document).ready(function() {
          $('#summernote').summernote({
          height: 300,                 // set editor height
@@ -59,7 +60,7 @@
         focus: true
         });
       });
-    </script>
+    </script>-->
 
     <div class="input-field col s12 m6">
       <i class="material-icons prefix">mode_edit</i>
