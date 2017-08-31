@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col s12">
-    <h4 class="center-align">Channels</h4>
-    <form method="GET" action="/channels/search">
+    <h4 class="center-align"><%= @channel.name %> Member's</h4>
+    <form method="GET" action="/channels/members/search/<%=@channel.id%>">
       <div class="row">
         <div class="input-field col s10">
           <i class="material-icons prefix">search</i>
@@ -105,31 +105,22 @@
 
     </div>
     <!-- collection of customers -->
-  <%= for channel <- @channels do %>
+  <%= for member <- @members do %>
     <ul class="collection">
       <li class="collection-item avatar">
         <div style=" background-color:red;" alt="" class="circle"> </div>
-          <%= if  Blog.Repo.get_by(Blog.UserChannel, channel_id: channel.id , user_id: @user.id) do %>
-          <span class="title"><a href="/channels/<%= channel.id%>"><%= channel.name%></a>
 
-          <a class="btn-flat disabled"><i class="material-icons">check</i></a>
-          <%= else %>
-          <span class="title"><a><%= channel.name%></a>
+          <span class="title"><a href="/users/profile/<%=member.zid%>"><%= member.name%></a>
 
-          <a class="btn-flat" href="/channels/join/<%= channel.id%>">Join</a>
-
-          <%end%>
         </span>
          <p>
 
-          Created: <%= Timex.from_now(NaiveDateTime.to_erl(channel.inserted_at)) %>
+          Joined: <%= Timex.from_now(NaiveDateTime.to_erl(member.inserted_at)) %>
 
          </p>
+         <a href="/channels/members/<%= @channel.id%>/<%= member.id%>" class="secondary-content"><i class="material-icons">delete</i></a>
 
 
-          <p> Members: 10 </p>
-         <p> <%=channel.summary%></p>
-        <a href="/channels/<%= channel.id%>" class="secondary-content"><i class="material-icons">chevron_right</i></a>
       </li>
     </ul>
   <% end %>

@@ -8,6 +8,7 @@ defmodule Blog.User do
     field :password, :string
     field :phone, :string
     field :address, :string
+    field :bio, :string
     field :zid, :string
     field :details, :map
     field :meta1, :string

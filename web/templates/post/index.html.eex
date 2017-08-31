@@ -1,5 +1,5 @@
 
-<h2>Posts</h2>
+<h4 style="text-align:center; "><i>Posts Feed</i></h4>
 <div class="card-panel white" style="border-radius:5px;">
 <div class="row">
 <%= render "filters.html", posts: @posts,

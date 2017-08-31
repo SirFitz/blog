@@ -7,6 +7,7 @@ defmodule Blog.Channel do
     field :amount, :integer
     field :category, :string
     field :summary, :string
+    field :type, :string
     field :status, :string
     field :meta1, :string
     field :meta2, :string
@@ -14,7 +15,7 @@ defmodule Blog.Channel do
     timestamps()
   end
   @required_fields [:name]
-  @optional_fields [:creator_id, :meta1, :meta2, :amount, :summary, :status]
+  @optional_fields [:creator_id,:type,  :meta1, :meta2, :amount, :summary, :status]
 
   @doc """
   Builds a changeset based on the `struct` and `params`.

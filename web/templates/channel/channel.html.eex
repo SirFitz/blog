@@ -1,76 +1,82 @@
-<div>
-<h4>  <%= @channel.name %> </h4>
-</div>
-
-<!-- Modal Trigger -->
- <a class="waves-effect waves-light btn" href="/channels/postform">Create Post</a>
 
 
-<main class="  post-cards" role="main">
+<main class=" post-cards" role="main">
+  <div>
+  <h4 style="text-align: center;">  <%= @channel.name %> Channel</h4>
+  </div>
 
-              <div class="filter-wrapper hide-on-med-and-down">
-                    <!-- Dropdown Trigger -->
-                    <a href="#" class="dropdown-button main-filter" data-activates="dropdown-filter" data-beloworigin="true">
-                      <i class="material-icons">restore</i>
-                    </a><ul id="dropdown-filter" class="dropdown-content ddc-filter">
-    <li>Time machine:</li>
-    <li class="divider"></li>
-    <li><a href="#!/all-time" id="all" value="0">All Time</a></li>
-    <li><a href="#!/yesterday" id="yesterday" value="1">24 Hours</a></li>
-    <li><a href="#!/this-week" id="week" value="2">7 Days</a></li>
-    <li><a href="#!/this-month" id="month" value="3">30 Days</a></li>
-</ul>
-                    <!-- Dropdown Filter menu -->
+  <div class="row">
+    <div id="main-feed" class="col s12">
+    <!-- main loop -->
+    <%= for post <- @posts do %>
+    <section class="card-panel animated fadeInUpBig" style="animation-delay: 0.75s;"><div class="card-data">
+       <time><%=post.inserted_at %></time>
+       <p> By: Jodi-Marie Taylor </p<
+      </div>
+      <!-- post wrapper -->
+      <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
+        <div class="post-wrap">
+          <header>
+            <h1 class="post-title" itemprop="title">
+              <a href="https://www.jepozz.work/graduate-ux-designer" rel="bookmark" title="Permalink: Graduate UX Designer" class="jobpost-trigger"><%= post.title%></a>
+            </h1>
+          </header>
+          <!-- post content -->
+          <section class="post-content">
 
-
-
-<form role="form" method="POST" id="QueryChange" name="QueryChange">
-  <input type="hidden" id="filter-type" name="filter-type" value="0">
-</form>                    <!--! -->
+              <div class="post-data">
+                <p></p><p><%= post.body%>      <p></p>
               </div>
 
-              <div class="row">
+          </section>
+           <!--! -->
 
-                    <div id="main-feed" class="col s12">
+    </div> <!-- ./ post-wrap -->
 
-                              <!-- main loop -->
+      <time class="post-time hide-on-med-and-down" datetime="2017-07-04 22:58" pubdate="">
+        <i class="material-icons">schedule</i> <span>10:58 pm</span>
+         <span itemprop="datePosted" class="hide">2017-07-04T22:58:13+00:00</span>
+      </time>
+
+    </article>
+
+    <%end%>
 
 
-<section class="card-panel animated fadeInUpBig" style="animation-delay: 0.75s;"><div class="card-data">    <time>Jul 04, 2017</time>    </div>
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
+    <section class="card-panel animated fadeInUpBig" style="animation-delay: 0.75s;"><div class="card-data">
+       <time>Jul 04, 2017</time>    </div>
+      <!-- post wrapper -->
+      <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
+        <div class="post-wrap">
 
-    <div class="post-wrap">
+          <header>
+            <h1 class="post-title" itemprop="title">
+              <a href="https://www.jepozz.work/graduate-ux-designer" rel="bookmark" title="Permalink: Graduate UX Designer" class="jobpost-trigger">Graduate UX Designer</a>
+              <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
+            </h1>
+          </header>
+          <!-- post content -->
+          <section class="post-content">
+            <button data-target="modal1" class="btn modal-trigger">Modal</button>
 
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/graduate-ux-designer" rel="bookmark" title="Permalink: Graduate UX Designer" class="jobpost-trigger">Graduate UX Designer</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
+              <div class="post-data">
+                <p></p><p>As a Graduate UX Designer at one of the world’s biggest e-commerce websites you’ll have unparalleled freedom to make a big impact on our business. Your ideas and analyses will find their way into the hands of millions of our users, and you’ll learn quickly about user behavior at scale. This Graduate Program really allows you to make your mark within the organization. We will encourage you to take full ownership of your projects and to make decisions every day. You will get insight and experience in a worldwide fast-growing internet company and a unique opportunity to learn about our business from some of the industry’s best people.</p>
+                  <p></p>
+              </div>
 
-          <div class="post-data">
-            <p></p><p>As a Graduate UX Designer at one of the world’s biggest e-commerce websites you’ll have unparalleled freedom to make a big impact on our business. Your ideas and analyses will find their way into the hands of millions of our users, and you’ll learn quickly about user behavior at scale. This Graduate Program really allows you to make your mark within the organization. We will encourage you to take full ownership of your projects and to make decisions every day. You will get insight and experience in a worldwide fast-growing internet company and a unique opportunity to learn about our business from some of the industry’s best people.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
+          </section>
+           <!--! -->
       <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Booking.com BV          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                          <span class="post-metadata location">
-                     <i class="material-icons">place</i>  <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">Worldwide</span>
-                </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
+      <span class="post-metadata author" itemprop="hiringOrganization"> Booking.com BV          </span>
+      <span class="post-metadata type">
+        <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
+      </span>
+      <span class="post-metadata category">
+        <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
+            <span class="post-metadata location">
+               <i class="material-icons">place</i>  <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">Worldwide</span>
+            </span>
+
       </footer>
 
       <!-- <aside class="action-wrap">
@@ -87,467 +93,9 @@
        <span itemprop="datePosted" class="hide">2017-07-04T22:58:13+00:00</span>
     </time>
 
-</article>  <!--! -->
-
-  </section><section class="card-panel animated fadeInUpBig" style="animation-delay: 1.5s;"><div class="card-data">    <time>Jun 05, 2017</time>    </div>
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/product-designer-london" rel="bookmark" title="Permalink: Product Designer" class="jobpost-trigger">Product Designer</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>We are looking for a Product Designer to join us in London for 3 months, with potential travel to Zurich. Coople’s mission is to change the way the world works. Since 2011, we’ve been building our apps and technology to help people work more flexibly and companies hire people when they need them. We’re backed […]</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Coople          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/freelance" rel="tag">Freelance</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     London                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-06-05 17:45" pubdate="">
-      <i class="material-icons">schedule</i> <span>5:45 pm</span>
-       <span itemprop="datePosted" class="hide">2017-06-05T17:45:47+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-  </section><section class="card-panel animated fadeInUpBig" style="animation-delay: 2.25s;"><div class="card-data">    <time>May 30, 2017</time>    </div>
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/midweight-designer" rel="bookmark" title="Permalink: Midweight Designer" class="jobpost-trigger">Midweight Designer</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>The Speed Read<br>
-This is a great opportunity for an ambitious self-starter who is fascinated by the way people think and behave.  Our client is a leading, not to mention award-winning behavioural insights agency, helping high profile brands, organisations and media agencies to grow through their research and insights of consumer behaviour.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Agency Bell Limited          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                          <span class="post-metadata location">
-                     <i class="material-icons">place</i>  <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">Worldwide</span>
-                </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-30 21:25" pubdate="">
-      <i class="material-icons">schedule</i> <span>9:25 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-30T21:25:25+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/creative-director-underscore" rel="bookmark" title="Permalink: Creative Director" class="jobpost-trigger">Creative Director</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>The Underscore team of strategic thinkers, branding experts and digital junkies is a diverse group united by the principles of hard work and creative leadership.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Under Score          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                          <span class="post-metadata location">
-                     <i class="material-icons">place</i>  <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">Worldwide</span>
-                </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-30 21:22" pubdate="">
-      <i class="material-icons">schedule</i> <span>9:22 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-30T21:22:08+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-  </section><section class="card-panel animated fadeInUpBig" style="animation-delay: 3s;"><div class="card-data">    <time>May 22, 2017</time>    </div>
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/director-web-mobile-marketing-products" rel="bookmark" title="Permalink: Director, Web &amp; Mobile Marketing Products" class="jobpost-trigger">Director, Web &amp; Mobile Marketing Products</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>Founded in 1960, Randstad has operations in 39 countries, representing more than 90 percent of the global HR services market, and is one of the most recognized recruitment agencies in the world. Web and Mobile are center to Randstad’s success and represent an incredible opportunity to address a vast and growing customer base of employers and employees. We are reinventing everything from how we display our services to how we provide the right customer experience.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Randstad USA          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="" title="in Marketing | Go to category"><span itemprop="occupationalCategory">Marketing</span></a>          </span>
-                          <span class="post-metadata location">
-                     <i class="material-icons">place</i>  <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">Worldwide</span>
-                </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-22 18:00" pubdate="">
-      <i class="material-icons">schedule</i> <span>6:00 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-22T18:00:59+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/user-researcher-lovelandco" rel="bookmark" title="Permalink: User Researcher" class="jobpost-trigger">User Researcher</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>Position Summary: Success in the UX User Research role requires the ability to plan, design, facilitate, analyze and report product usability throughout our development process to provide the user insight needed for product definition and design. The primary focus of this role is on usability testing. We are looking for a candidate that thrives in […]</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Hach Company          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Loveland, CO                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-22 17:56" pubdate="">
-      <i class="material-icons">schedule</i> <span>5:56 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-22T17:56:23+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/web-designer-ui-expert" rel="bookmark" title="Permalink: Web Designer &amp; UI Expert" class="jobpost-trigger">Web Designer &amp; UI Expert</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>eventplanner.be, eventplanner.nl and eventplanner.tv are the leading inspiration platforms for event planners in Belgium, The Netherlands and the world.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              eventplanner.be          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/freelance" rel="tag">Freelance</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Belgium                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-22 17:51" pubdate="">
-      <i class="material-icons">schedule</i> <span>5:51 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-22T17:51:27+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-  </section><section class="card-panel animated fadeInUpBig" style="animation-delay: 3.75s;"><div class="card-data">    <time>May 11, 2017</time>    </div>
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/ux-lead" rel="bookmark" title="Permalink: UX Lead" class="jobpost-trigger">UX Lead</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>¿Alguna vez viste Master Chef? Si lo hiciste, sabes que en las mejores cocinas del mundo los Chefs no se ocupan de cocinar, sino de que los cocineros tengan todo lo necesario para hacer platos increíbles y que los comensales tengan una excelente cena. Lo que queremos es un Chef para nuestra cocina. Queremos una […]</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Aerolab          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Argentina, Buenos Aires                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-11 23:29" pubdate="">
-      <i class="material-icons">schedule</i> <span>11:29 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-11T23:29:28+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/qa-analyst" rel="bookmark" title="Permalink: QA Analyst" class="jobpost-trigger">QA Analyst</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>¿Qué estamos buscando? To an optimist, the glass is half full. To a pessimist, the glass is half empty. To a good tester, the glass is twice as big as it needs to be.<br>
-Estamos buscando QA Analysts para incorporarse a nuestro equipo de Desarrolladores, Diseñadores y Project Managers, enfocado en diseño y desarrollo de productos digitales.<br>
-Queremos a alguien curioso, con ganas de hacer cosas nuevas y que sea capaz de integrarse a un equipo con un nivel técnico altísimo.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Aerolab          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="" title="in Sys Admin, Dev Ops, QA | Go to category"><span itemprop="occupationalCategory">Sys Admin, Dev Ops, QA</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Argentina, Buenos Aires                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-11 23:25" pubdate="">
-      <i class="material-icons">schedule</i> <span>11:25 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-11T23:25:44+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-  </section><section class="card-panel animated fadeInUpBig" style="animation-delay: 4.5s;"><div class="card-data">    <time>May 05, 2017</time>    </div>
-  <!-- post wrapper -->
+  </article>
+    </section><section class="card-panel animated fadeInUpBig" style="animation-delay: 4.5s;"><div class="card-data">    <time>May 05, 2017</time>    </div>
+    <!-- post wrapper -->
     <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
 
     <div class="post-wrap">
@@ -563,7 +111,7 @@ Queremos a alguien curioso, con ganas de hacer cosas nuevas y que sea capaz de i
 
           <div class="post-data">
             <p></p><p>Founded in 2011, Pixowl is a mobile game company headquartered in San Francisco, with development studios in Buenos Aires. Its team of dynamic innovators strives to build games for iOS and Android blending exciting gameplay, comic book art and character-driven storylines. Pixowl is currently expanding its team in Buenos Aires and looking to work with […]</p>
-<p></p>
+            <p></p>
           </div>
 
       </section>
@@ -622,7 +170,7 @@ Queremos a alguien curioso, con ganas de hacer cosas nuevas y que sea capaz de i
 
           <div class="post-data">
             <p></p><p>Job Family: Marketing/Communications Sabre is the global leader in innovative technology that leads the travel industry. We are always looking for bright and driven people who have a penchant for technology and want to hone their skills. If you are interested in challenging work, being part of a global team, and solving complex problems through […]</p>
-<p></p>
+            <p></p>
           </div>
 
       </section>
@@ -705,16 +253,8 @@ Queremos a alguien curioso, con ganas de hacer cosas nuevas y que sea capaz de i
                 </span>
               </span>
           </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
 
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
+      </footer>
 
     </div> <!-- ./ post-wrap -->
 
@@ -725,576 +265,103 @@ Queremos a alguien curioso, con ganas de hacer cosas nuevas y que sea capaz de i
 
 </article>  <!--! -->
 
+    <!--! -->
 
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
 
-    <div class="post-wrap">
+       <!-- <div class="widget-banner wb-googleplus hide-on-small-only">
+         <p>Estamos en Google + sumate y seguinos !</p>
+         <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
+       </div> -->
 
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/lead-designer" rel="bookmark" title="Permalink: Lead Designer" class="jobpost-trigger">Lead Designer</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
+       <!-- <div class="widget-banner wb-facebook hide-on-small-only">
+         <p>Facebook? Dale me gusta a nuestra página oficinal</p>
+         <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
+       </div> -->
+        <!-- -->
+    </div> <!-- ./main feed -->
 
-          <div class="post-data">
-            <p></p><p>About Jampp Jampp is a performance marketing platform for acquiring and engaging mobile customers. The company combines behavioral data with predictive and programmatic technology to generate revenue for advertisers by showing personal, relevant ads that inspire consumers to purchase for the first time, or more often. Role Description We are looking for a senior-level graphic […]</p>
-<p></p>
-          </div>
+    </div>
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large green">
+              <i class="material-icons">mode_edit</i>
+            </a>
+            <ul>
+              <li><a href ="#" class="btn-floating yellow " data-toggle="modal" data-target="#myModal" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">add</i></a></li>
 
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Jampp          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Argentina, Buenos Aires                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
+              <li><a href =" /channels/leave/<%=@channel.id%>/<%=@user.id%>"class="btn-floating  red darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">delete</i></a></li>
+              <li><a href =" /channels/view/members/<%=@channel.id%>" class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">face</i></a></li>
 
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
+            </ul>
+      </div>
 
-    </div> <!-- ./ post-wrap -->
 
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-05 02:18" pubdate="">
-      <i class="material-icons">schedule</i> <span>2:18 am</span>
-       <span itemprop="datePosted" class="hide">2017-05-05T02:18:48+00:00</span>
-    </time>
 
-</article>  <!--! -->
+      <div class="container">
 
+        <!-- Trigger the modal with a button -->
 
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
 
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/entrepreneurial-business-analyst" rel="bookmark" title="Permalink: (Entrepreneurial) Business Analyst" class="jobpost-trigger">(Entrepreneurial) Business Analyst</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>Do you have a passion for marketing and mobile technologies? We are looking for a dedicated and motivated young person to join our growing business team You will get a quantum leap forward in one of the fastest growing and most exciting industries. We think we are working on something that is very important and […]</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Jampp          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="" title="in Marketing | Go to category"><span itemprop="occupationalCategory">Marketing</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Argentina, Buenos Aires                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-05 02:15" pubdate="">
-      <i class="material-icons">schedule</i> <span>2:15 am</span>
-       <span itemprop="datePosted" class="hide">2017-05-05T02:15:45+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/devops-engineer" rel="bookmark" title="Permalink: DevOps Engineer" class="jobpost-trigger">DevOps Engineer</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>Hi!</p>
-<p>At Tienda Nube / Nuvem Shop we are looking for a DevOps Engineer to work in the Infrastructure team.</p>
-<p>What do we do at Tienda Nube / Nuvem Shop?</p>
-<p>We are a startup born in Argentina in 2011 with offices in Buenos Aires and São Paulo, backed by world class investment funds and investors. We are a young team that helps thousands of entrepreneurs, and small and medium companies to build their online business in Brazil, Argentina, Mexico, Colombia and Chile. As we are a growing startup, we are flexible, independent and proactive. We like to work with people who love their work, to plan and implement innovative solutions to major challenges, and working with multicultural teams. We are true believers that a diverse team creates a better working environment and produces innovative solutions for our customers.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Tienda Nube          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="" title="in Sys Admin, Dev Ops, QA | Go to category"><span itemprop="occupationalCategory">Sys Admin, Dev Ops, QA</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Argentina, Buenos Aires                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-05 02:09" pubdate="">
-      <i class="material-icons">schedule</i> <span>2:09 am</span>
-       <span itemprop="datePosted" class="hide">2017-05-05T02:09:01+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-  </section><section class="card-panel animated fadeInUpBig" style="animation-delay: 5.25s;"><div class="card-data">    <time>May 04, 2017</time>    </div>
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/product-designers-bsas" rel="bookmark" title="Permalink: Product Designers" class="jobpost-trigger">Product Designers</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>About You</p>
-<p>You’re a natural problem solver who loves a good challenge. You also know that the first answer is rarely the best answer. You have a ton of empathy and care about understanding the user’s needs and wants. You always come to the table with more than one option, thoughtfully exploring different directions and how they impact the user’s experience. You can articulate design choices and strategy in a way that’s easily understood by team members and stakeholders from different global organizations.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Ketos Delphin          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Argentina, Buenos Aires                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-04 03:14" pubdate="">
-      <i class="material-icons">schedule</i> <span>3:14 am</span>
-       <span itemprop="datePosted" class="hide">2017-05-04T03:14:53+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-  </section><section class="card-panel animated fadeInUpBig" style="animation-delay: 6s;"><div class="card-data">    <time>May 02, 2017</time>    </div>
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/product-designer" rel="bookmark" title="Permalink: Product Designer" class="jobpost-trigger">Product Designer</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>It’s an incredible time to be a part of WeWork. We’re all passionate, energetic and hungry to give our members every advantage and to contribute to their success. We are rapidly expanding our product line to meet member needs and you will work with all stakeholders to understand our members, their existing pain points, and will provide world class interfaces that solve those pain points. You will conduct and document usability evaluations and will recommend product solutions based on real-world user feedback.</p>
-<p>The person in this role is expected to collaborate deeply with other designers and developers to design compelling wireframes, prototypes, interaction design (using motion), and will be expected to help on visual design and final production design.</p>
-<p>The person in this role will take an active and sometimes a leading role in brainstorming/ideation sessions and daily design critiques. In these sessions, you will be expected to advocate for our members and to provide guidance on best-in-class user experience principles for our web and mobile products.</p>
-<p>We thrive in our work-hard, play-hard culture.  We get serious things done. Then we have fun, and lots of it. If this describes where you want to work, you’ll fit right into our team.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              WeWork          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     New York, NY                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-02 23:57" pubdate="">
-      <i class="material-icons">schedule</i> <span>11:57 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-02T23:57:18+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/full-stack-developer" rel="bookmark" title="Permalink: Full Stack developer" class="jobpost-trigger">Full Stack developer</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>Overview<br>
-We’re an early stage product startup and looking for passionate full stack developers. The job is a full-time position based out of Bangalore, but remote work is an option.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Fulfil.io          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a>, <a href="https://www.jepozz.work/job-type/remote" rel="tag">Remote</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/development" title="in Development | Go to category"><span itemprop="occupationalCategory">Development</span></a>          </span>
-                          <span class="post-metadata location">
-                     <i class="material-icons">place</i>  <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">Worldwide</span>
-                </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-02 22:06" pubdate="">
-      <i class="material-icons">schedule</i> <span>10:06 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-02T22:06:17+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/angularjs-javascript" rel="bookmark" title="Permalink: AngularJS / Javascript" class="jobpost-trigger">AngularJS / Javascript</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>We are a young, lean, seed funded AngelPad company looking for a kick ass AngularJS font end developer to join our team and help build our product Process Street.<br>
-We are well funded, growing quickly and will be at break even soon.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Process Street          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/remote" rel="tag">Remote</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/development" title="in Development | Go to category"><span itemprop="occupationalCategory">Development</span></a>          </span>
-                          <span class="post-metadata location">
-                     <i class="material-icons">place</i>  <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">Worldwide</span>
-                </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-02 22:02" pubdate="">
-      <i class="material-icons">schedule</i> <span>10:02 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-02T22:02:26+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/frontend-developer" rel="bookmark" title="Permalink: Frontend Developer" class="jobpost-trigger">Frontend Developer</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>Our mission is simple: we want to revolutionize digital catalogs. That’s why we’re dedicated to building a beautiful web app with meticulous attention to quality. Working from our office in Amsterdam, we use JavaScript, HTML5, CSS3, and Ruby on Rails to change the catalog forever. We believe in getting things done, making decisions fast, and not wasting time in endless meetings. We do this by listening to our customers, checking the data, and trusting our gut.</p>
-<p>Everyone in our development team works together and contributes to the success of our product, including designers and product managers. We promise to get rid of everything that stands in your way so you can create your best work. If this sounds like your kind of place, it’s time to get in touch.</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              Publitas          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/remote" rel="tag">Remote</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/development" title="in Development | Go to category"><span itemprop="occupationalCategory">Development</span></a>          </span>
-                          <span class="post-metadata location">
-                     <i class="material-icons">place</i>  <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">Worldwide</span>
-                </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-02 21:58" pubdate="">
-      <i class="material-icons">schedule</i> <span>9:58 pm</span>
-       <span itemprop="datePosted" class="hide">2017-05-02T21:58:29+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-  <!-- post wrapper -->
-    <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
-
-    <div class="post-wrap">
-
-      <header>
-        <h1 class="post-title" itemprop="title">
-          <a href="https://www.jepozz.work/senior-designer-ux-ui" rel="bookmark" title="Permalink: Senior Designer, UX &amp; UI" class="jobpost-trigger">Senior Designer, UX &amp; UI</a>
-          <a href="#expand" title="ver más" class="expand-trigger"><i class="material-icons">add</i></a>
-        </h1>
-      </header>
-      <!-- post content -->
-      <section class="post-content">
-
-          <div class="post-data">
-            <p></p><p>We are looking for a senior designer with a solid background in user experience and interface design to join our ranks. Someone who is excited about the chance to make a difference in the lives of users, as we’re creating productivity and business intelligence apps that are used by hundreds of thousands – and, in some cases, millions – of employees on a daily basis.</p>
-<p>We need someone who understands that design is equal parts form and function. The ability to quickly wireframe, prototype, iterate, and ultimately create beautiful interfaces based on feedback is critical to how we work. User interviews and testing get you excited, and you are constantly validating your assumptions. Our next team member is a self-starter with the ability to keep things moving forward, even in the absence of clear direction. We have established a strong process for identifying, validating, and executing truly innovative work across multiple product teams. Additionally, you enjoy using your experience and expertise to help train and teach others on the team.</p>
-<p>If this sounds like you, we want to hear from you!</p>
-<p></p>
-          </div>
-
-      </section>
-       <!--! -->
-      <footer>
-                     <span class="post-metadata author" itemprop="hiringOrganization">
-              RevUnit          </span>
-                    <span class="post-metadata type">
-              <i class="material-icons">card_travel</i> <span itemprop="employmentType"><a href="https://www.jepozz.work/job-type/full-time" rel="tag">Full Time</a> </span>
-          </span>
-          <span class="post-metadata category">
-              <i class="material-icons">folder_open</i> <a href="https://www.jepozz.work/jobs/design" title="in Design | Go to category"><span itemprop="occupationalCategory">Design</span></a>          </span>
-                    <span class="post-metadata location">
-              <i class="material-icons">place</i>
-              <span itemprop="jobLocation" itemscope="" itemtype="http://schema.org/Place">
-                <span itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                     <span itemprop="addressCountry">
-                     Bentonville, United States                     </span>
-                </span>
-              </span>
-          </span>
-                    <!-- <span class="post-metadata tags">
-                      </span> -->
-      </footer>
-
-      <!-- <aside class="action-wrap">
-        <a class="action-links modal-trigger share" href="#!moda-sharing" title="Compartir en Facebook, Twitter, Google Plus...">
-           <i class="material-icons">share</i>
-        </a>
-        <a class="action-links" href="#!" title="Denunciar / Informar"><i class="material-icons">error_outline</i></a>
-      </aside> -->
-
-    </div> <!-- ./ post-wrap -->
-
-    <time class="post-time hide-on-med-and-down" datetime="2017-05-02 07:11" pubdate="">
-      <i class="material-icons">schedule</i> <span>7:11 am</span>
-       <span itemprop="datePosted" class="hide">2017-05-02T07:11:40+00:00</span>
-    </time>
-
-</article>  <!--! -->
-
-
-
-</section>
-
-<!-- pagination or load more -->
-<nav class="navigation">
-  <div class="left-align"><a href="https://www.jepozz.work/page/2"><i class="material-icons">arrow_back</i> Older Entries</a></div>
-  <div class="right-align"></div>
-</nav>
-
-<!--! -->
-
-                              <!--! -->
-
-
-                              <!-- widgets, banners -->
-                              <div class="widget-banner wb-twitter">
-                               <p>Follow <a href="https://twitter.com/jepozz" title="Jepozz Twitter">@jepozz</a>
-                               on twitter <span class="hide-on-small-only">to find out about future jobs and other news</span></p>
-                               <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
-                             </div>
-
-                             <!-- <div class="widget-banner wb-googleplus hide-on-small-only">
-                               <p>Estamos en Google + sumate y seguinos !</p>
-                               <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
-                             </div> -->
-
-                             <!-- <div class="widget-banner wb-facebook hide-on-small-only">
-                               <p>Facebook? Dale me gusta a nuestra página oficinal</p>
-                               <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
-                             </div> -->
-                              <!-- -->
-
-                    </div> <!-- ./main feed -->
-
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create Channel</h4>
               </div>
-              <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-                        <a class="btn-floating btn-large red">
-                          <i class="material-icons">mode_edit</i>
-                        </a>
-                        <ul>
-                          <li><a class="btn-floating red" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">insert_chart</i></a></li>
-                          <li><a class="btn-floating yellow darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">format_quote</i></a></li>
-                          <li><a class="btn-floating green" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">publish</i></a></li>
-                          <li><a class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">attach_file</i></a></li>
-                        </ul>
-                      </div>
+              <div class="modal-body">
+                <form action="/channels/create/posts/:channel_id" method="post">
+                  <div class="row">
+
+                    <div class="input-field col s12 m6">
+                      <i class="material-icons prefix">mode_edit</i>
+                      <input type="text" name="title" id="title"/>
+                      <label style="font-size:20px;" for="title">Title</label>
+                    </div>
+
+                    <div class="input-field col s12 m6">
+                      <i class="material-icons prefix">mode_edit</i>
+                      <input type="text" name="tags" id="tags" placeholder="Place a comma between each tag like this: tag1,tag2"/>
+                      <label style="font-size:20px;" for="tags">Tags</label>
+                      <br/>
+
+                    </div>
+
+
+                    <div class="input-field col s12 m12">
+                      <i class="material-icons prefix" style="color:black;">mode_edit</i>
+                      <label style="font-size:20px;" for="body">
+                        <p>Content</p>
+                      </label>
+                      <br/><br/>
+                      <textarea name="body" id="summernote" rows="10"/></textarea>
+                    </div>
+
+                    <script>
+                      $(document).ready(function() {
+                         $('#summernote').summernote({
+                         height: 300,                 // set editor height
+                        minHeight: null,             // set minimum height of editor
+                        maxHeight: null,             // set maximum height of editor
+                        focus: true
+                        });
+                      });
+                    </script>
+
+
+
+                    <div class="input-field col s12"
+                      <span>
+                          <button class="submit btn btn-primary waves-effect waves-light cyan">Submit</button>
+                      </span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+          </div>
+        </div>
+
+      </div>
         </main>

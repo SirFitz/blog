@@ -1,8 +1,9 @@
 
 <div class="container">
 				<div class="row">
-					<div class="col-md-8  col-sm-6 col-sm-offset-3">
-						<div class="card card-signup">
+				
+
+				      <div class="card card-signup">
 							<form class="form" method="POST" action="/user/create">
 								<div class="header header-primary text-center">
 									<h4>Sign Up</h4>
@@ -27,12 +28,7 @@
 										</span>
 										<div class="form-group is-empty"><input type="text" name="name" class="form-control" placeholder="Name..."><span class="material-input"></span></div>
 									</div>
-                  <div class="input-group">
-										<span class="input-group-addon">
-											<i class="material-icons">face</i>
-										</span>
-										<div class="form-group is-empty"><input type="text" name="username" class="form-control" placeholder="User Name..."><span class="material-input"></span></div>
-									</div>
+
 
 									<div class="input-group">
 										<span class="input-group-addon">
@@ -46,6 +42,12 @@
 											<i class="material-icons">lock_outline</i>
 										</span>
 										<div class="form-group is-empty"><input type="password" name= "password" placeholder="Password..." class="form-control"><span class="material-input"></span></div>
+									</div>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="material-icons">lock_outline</i>
+										</span>
+										<div class="form-group is-empty"><input type="password" name= "cpassword" placeholder="Confirm Password..." class="form-control"><span class="material-input"></span></div>
 									</div>
 
 									<!-- If you want to add a checkbox to this form, uncomment this code
