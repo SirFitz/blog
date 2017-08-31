@@ -10,11 +10,26 @@
       </div>
     </form>
     <div class="container">
+<!------- MODAL TEST -->
 
+
+<!-- Modal Trigger -->
+
+
+<script>
+$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+
+</script>
+
+
+<!------ MODAL TEST END -->
       <!-- Trigger the modal with a button -->
 
       <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal fade" id="modal1" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -36,6 +51,7 @@
                  </div>
 
               <div class="col s6">
+
                 <label for="sel1">Privacy Type</label>
                 <select name="type"  class="form-control" id="Select">
 
@@ -138,6 +154,5 @@
 
 <!-- add button -->
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-  <a href="#" class="btn-floating btn-large waves-effect waves-light green" data-toggle="modal" data-target="#myModal"><i class="material-icons">add</i></a>
-
+  <a href="#modal1" class="btn-floating btn-large waves-effect waves-light green modal-trigger" ><i class="material-icons">add</i></a>
 </div>

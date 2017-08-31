@@ -286,7 +286,7 @@
               <i class="material-icons">mode_edit</i>
             </a>
             <ul>
-              <li><a href ="#" class="btn-floating yellow " data-toggle="modal" data-target="#myModal" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">add</i></a></li>
+              <li><a href ="#myModal" class="btn-floating yellow modal-trigger" data-toggle="modal" data-target="#myModal" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">add</i></a></li>
 
               <li><a href =" /channels/leave/<%=@channel.id%>/<%=@user.id%>"class="btn-floating  red darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">delete</i></a></li>
               <li><a href =" /channels/view/members/<%=@channel.id%>" class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">face</i></a></li>

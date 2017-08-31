@@ -49,6 +49,7 @@ defmodule Blog.Router do
     get "/login", AuthController, :login
     post "/signin", AuthController, :signin
     post "/user/create", AuthController, :create_user
+    post "/posts/new", PostController, :create
     post "/posts", PostController, :index
     resources "/posts/", PostController do
       resources "/comments", CommentController, only: [:create]

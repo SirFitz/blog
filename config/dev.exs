@@ -50,7 +50,7 @@ config :phoenix, :stacktrace_depth, 20
 config :blog, Blog.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
-  database: "blog",
+  password: "Masterful#101",
+  database: "ticket_app",
   hostname: "localhost",
   pool_size: 10
