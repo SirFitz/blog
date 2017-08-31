@@ -1,0 +1,67 @@
+  <script>
+
+  $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+
+  </script>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <form action="/channels/create/posts/:channel_id" method="post">
+      <div class="row">
+
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">mode_edit</i>
+          <input type="text" name="title" id="title"/>
+          <label style="font-size:20px;" for="title">Title</label>
+        </div>
+
+        <div class="input-field col s12 m6" >
+          <i class="material-icons prefix" >account_circle</i>
+          <input type="text" name="author" id="author"/>
+          <label style="font-size:20px;" for="author">Author</label>
+          <br/>
+        </div>
+
+
+        <div class="input-field col s12 m12">
+          <i class="material-icons prefix" style="color:black;"">mode_edit</i>
+          <label style="font-size:20px;" for="body">
+            <p>Content</p>
+          </label>
+          <br/><br/>
+          <textarea name="body" id="summernote" rows="10"/></textarea>
+        </div>
+
+        <script>
+          $(document).ready(function() {
+             $('#summernote').summernote({
+             height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true
+            });
+          });
+        </script>
+
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">mode_edit</i>
+          <input type="text" name="tags" id="tags" placeholder="Place a comma between each tag like this: tag1,tag2"/>
+          <label style="font-size:20px;" for="tags">Tags</label>
+          <br/>
+          <br/>
+        </div>
+
+        <div class="input-field col s12"
+          <span>
+              <button class="submit btn btn-primary waves-effect waves-light cyan">Submit</button>
+          </span>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
