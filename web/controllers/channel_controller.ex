@@ -165,7 +165,7 @@ defmodule Blog.ChannelController do
   end
 
   def create_post(conn, params) do
-    user = Repo.get_by(User, id: 1)
+    user = Repo.get_by(User, zid: conn.cookies["bloguser"])
     post_params = %{"body" => params["body"], "channel_id" => params["channel_id"],  "tags" => params["tags"], "title" => params["title"]}
     space_count =
       params["body"]
@@ -203,7 +203,43 @@ defmodule Blog.ChannelController do
 
 
   def notify(conn, params) do
+    unseen_ids = Repo.all(from p in Post, join: c in Channel, where: c.id == p.channel_id and fragment("? > now() - interval '1 second'", p.updated_at),  limit: 5)
+    #IO.inspect unseen_ids.inserted_at
+    for i <- unseen_ids do
+      IO.inspect i.inserted_at
+    end
+    unseen = 0
+    IO.inspect unseen
+    notification_msg = "   <li>
+        <p>NOTIFICATIONS <span class='new badge'>4</span></p>
+      </li>
+      <li class='divider'></li>
+      <li>
+        <a href=''><i class='mdi-action-add-shopping-cart'></i> A new order has been placed!</a>
+        <time class='media-meta' datetime='2015-06-12T20:50:48+08:00'>2 hours ago</time>
+      </li>
 
+      <li>
+        <a href=''><i class='mdi-action-settings'></i> Settings updated</a>
+        <time class='media-meta' datetime='2015-06-12T20:50:48+08:00'>4 days ago</time>
+      </li>"
+      data =  %{"notification"   => "<li>
+      <p><b>Notifications</b> <span class='new badge'>4</span></p>
+        </li>
+        <li>
+          <a href=''><i class='mdi-action-add-shopping-cart'></i>Chanel 1- This is life</a>
+          <time class='media-meta' datetime='2015-06-12T20:50:48+08:00'>2 hours ago</time>
+        </li>
+        <li>
+          <a href=''><i class='mdi-action-add-shopping-cart'></i> A new order has been placed!</a>
+          <time class='media-meta' datetime='2015-06-12T20:50:48+08:00'>2 hours ago</time>
+        </li>
+        <li>
+          <a href=''><i class='mdi-action-add-shopping-cart'></i> A new order has been placed!</a>
+          <time class='media-meta' datetime='2015-06-12T20:50:48+08:00'>2 hours ago</time>
+        </li>" ,
+        "unseen_notification" => unseen }
+       json(conn, data)
   end
 
   def view_members(conn, params) do

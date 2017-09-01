@@ -31,7 +31,7 @@ defmodule Blog.Router do
     get "/view", ChannelController, :view
     get "/search", ChannelController, :search
     get "/join/:channel_id", ChannelController, :join
-
+    get "/notify", ChannelController, :notify
     get "/edit/:id", ChannelController, :edit
     post "/update/:id", ChannelController, :update
     get "/leave/:channel_id/:user_id", ChannelController, :leave
