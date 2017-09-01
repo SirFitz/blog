@@ -31,6 +31,7 @@ defmodule Blog.Router do
     get "/view", ChannelController, :view
     get "/search", ChannelController, :search
     get "/join/:channel_id", ChannelController, :join
+    get "/copy", ChannelController, :copy
 
     get "/edit/:id", ChannelController, :edit
     post "/update/:id", ChannelController, :update
@@ -50,6 +51,7 @@ defmodule Blog.Router do
     post "/signin", AuthController, :signin
     post "/user/create", AuthController, :create_user
     post "/posts/new", PostController, :create
+    post "/posts/:id", PostController, :update
     post "/posts", PostController, :index
     resources "/posts/", PostController do
       resources "/comments", CommentController, only: [:create]

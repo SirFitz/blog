@@ -23,17 +23,23 @@
   </div>
   <div class="input-field col s12 m3">
     <i class="material-icons prefix">date_range</i>
-    <input id="icon_prefix" type="text" class="validate" placeholder="YYYY-MM-DD" name="date_search">
+    <select name="date_sort">
+      <option value="" disabled selected>Sort by Date</option>
+      <option value="desc">Newest First</option>
+      <option value="asc">Oldest First</option>
+    </select>
   </div>
   <div class="input-field col s12 m3">
     <i class="material-icons prefix">thumb_up</i>
     <input id="icon_prefix" type="text" class="validate" placeholder="5-10" name="likes_search">
   </div>
-  <div col s12 m3">
-    <input  name="ratings_sort" type="checkbox" id="hrate"/>
-    <label for="hrate" value="desc">Sort By Highest Rated First</label>
-    <input  name="ratings_sort" type="checkbox" id="lrate"/>
-    <label for="lrate" value="asc">Sort By Lowest Rated First</label>
+  <div class="input-field col s12 m3">
+    <i class="material-icons prefix">star_half</i>
+    <select name="ratings_sort">
+      <option value="" disabled selected>Sort by Rating</option>
+      <option value="desc">Highest Rated First</option>
+      <option value="asc">Lowest Rated First</option>
+    </select>
   </div>
 </div>
 

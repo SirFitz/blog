@@ -240,4 +240,27 @@ defmodule Blog.ChannelController do
 
   end
 
+  def copy(conn, params) do
+      # if you are the creator of the group you can delete anyone
+      channel = params["channel"]
+      id = params["id"]
+      post =
+         Repo.get!(Blog.Post, id)
+        |> Map.put(:id ,:rand.uniform(9999))
+        |> Map.put(:channel_id, channel)
+        |> Repo.preload(:comments)
+      map = %{"channel_id" => channel}
+
+      changeset = Post.changeset(post, map)
+
+      case Repo.insert(changeset) do
+        {:ok, post} ->
+          conn
+          |> put_flash(:info, "Post created successfully.")
+          |> redirect(to: "/channels/view")
+        {:error, changeset} ->
+        conn |>  redirect(to: "/posts")
+      end
+  end
+
 end

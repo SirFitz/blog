@@ -20,84 +20,47 @@
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Create Channel</h4>
             </div>
             <div class="modal-body">
 
-              <form class="form" method="POST" action="/channels/create">
+            <form class="form" method="POST" action="/channels/create">
 
-                <div class="content">
+              <div class="content">
 
-                  <div class="row">
-                 <div class="input-field col s6">
-                   <input  id="name" name="name" type="text" class="validate" placeholder="FoodieChannel">
-                   <label for="name">Name</label>
-                 </div>
+                <div class="row">
+               <div class="input-field col s6">
+               <i class="material-icons  prefix">title</i>
+                 <input  id="name" name="name" type="text" class="validate" placeholder="Channel Name">
+                 <label for="name">Name</label>
+               </div>
 
-              <div class="col s6">
+            <div class="input-field col s6">
+              <i class="material-icons  prefix">lock</i>
+              <select>
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+              </select>
+
                 <label for="sel1">Privacy Type</label>
-                <select name="type"  class="form-control" id="Select">
-
-                  <option value="private">Private</option>
-                  <option value="public">Public</option>
-
-                </select>
-              </div>
-                             </div>
-               <div class="form-group">
-
-                </div>
-               <div class="row">
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <textarea id="summary" name="summary" class="materialize-textarea"></textarea>
-                        <label for="summary">Summary</label>
-                      </div>
-                    </div>
-                </div>
-                  <!-- If you want to add a checkbox to this form, uncomment this code
-
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="optionsCheckboxes" checked>
-                      Subscribe to newsletter
-                    </label>
-                  </div>
-                  <div class="footer text-center">
-                    <a href="#pablo" class="btn btn-simple btn-primary btn-lg">Get Started</a>
-                  </div>
-                  <div class="header header-primary ">
-                    <h4> Share with friends via </h4>
-                    <div class="social-line">
-                      <a href="#pablo" class="btn btn-simple btn-just-icon">
-                        <i class="fa fa-facebook-square"></i>
-                      </a>
-                      <a href="#pablo" class="btn btn-simple btn-just-icon">
-                        <i class="fa fa-twitter"></i>
-                      </a>
-                      <a href="#pablo" class="btn btn-simple btn-just-icon">
-                        <i class="fa fa-google-plus"></i>
-                      </a>
-                      <a href="#pablo" class="btn btn-simple btn-just-icon">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                      </a>
-                    </div>
-
-                  </div>
-                 -->
-                </div>
-                <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
-
-                <div class="modal-footer">
-                  <button class="btn-large waves-effect waves-light btn btn-simple btn-primary btn-lg" type="submit" name="submit">
-                    CREATE YOUR Channel &rarr;
-                  </button>    </div>
-                </div>
-
             </div>
+          </div>
+                    <div class="input-field col s12">
+                      <textarea id="summary" name="summary" class="materialize-textarea"></textarea>
+                      <label for="summary">Summary</label>
+                    </div>
+              </div>
+              <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
 
-          </form>
+              <div class="modal-footer">
+                <button class="btn-large waves-effect waves-light btn btn-simple btn-primary btn-lg" type="submit" name="submit">
+                  CREATE YOUR Channel &rarr;
+                </button>    </div>
+              </div>
+
+          </div>
+
+        </form>
             </div>
 
         </div>

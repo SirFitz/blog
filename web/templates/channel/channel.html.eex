@@ -91,7 +91,6 @@
             <!-- Modal content-->
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Create Post</h4>
               </div>
               <div class="modal-body">
@@ -115,24 +114,17 @@
 
 
                     <div class="input-field col s12 m12">
-                      <i class="material-icons prefix" style="color:black;">mode_edit</i>
+                      <i class="material-icons prefix" style="color:black;"">mode_edit</i>
                       <label style="font-size:20px;" for="body">
-                        <p>Content</p>
+                        Content
                       </label>
                       <br/><br/>
-                      <textarea name="body" id="summernote" rows="10"/></textarea>
-                    </div>
+                        <textarea name="body" id="body" rows="10"/></textarea>
+                      </div>
 
-                    <script>
-                      $(document).ready(function() {
-                         $('#summernote').summernote({
-                         height: 300,                 // set editor height
-                        minHeight: null,             // set minimum height of editor
-                        maxHeight: null,             // set maximum height of editor
-                        focus: true
-                        });
-                      });
-                    </script>
+                      <script>
+                          CKEDITOR.replace( 'body' );
+                      </script>
 
 
 

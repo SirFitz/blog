@@ -60,6 +60,7 @@ $('select').material_select();
 });
 
 </script>
+<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
 
     <!--  <link href="/css/app.css" rel="stylesheet"> -->
@@ -68,10 +69,32 @@ $('select').material_select();
       padding-right: 30px;
       padding-left: 30px;
     }
+
+        .fancy-checkbox input[type="checkbox"],
+    .fancy-checkbox .checked {
+        display: none;
+    }
+
+    .fancy-checkbox input[type="checkbox"]:checked ~ .unchecked
+    {
+        display: inline-block;
+    }
+
+    .fancy-checkbox input[type="checkbox"]:checked ~ .checked
+    {
+        display: none;
+    }
+
+    .fancy-checkbox {
+        font-size: 1.5em;
+        color: #489fdf;
+    }
+
+
     </style>
   </head>
 
-  <body class="" style="background-color: #CCC;">
+
     <div class="">
       <header class="header">
         <nav role="navigation" style="border-radius:5px;" class="grey z-depth-4" style="color: black;">

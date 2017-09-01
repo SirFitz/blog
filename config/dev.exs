@@ -20,7 +20,7 @@ use Mix.Config
 # configured to run both http and https servers on
 # different ports .
 config :blog, Blog.Endpoint,
-  http: [port: 4002],
+  http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,

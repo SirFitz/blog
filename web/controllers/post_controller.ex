@@ -3,13 +3,14 @@ defmodule Blog.PostController do
 
   alias Blog.{Post, Comment, User}
 
+  plug :cookie
 
   def cookie(conn, params) do
     cookie = conn.cookies["user"]
     case cookie != nil do
-      {:ok, body} ->
+      true ->
       assign(conn, :user, cookie)
-      {:error, reason} ->
+      false ->
       cookie = Ecto.UUID.generate
       conn
         |> put_resp_cookie("user", cookie, path: "/", max_age: (86400 * 3600))
@@ -56,13 +57,13 @@ defmodule Blog.PostController do
         posts
       end
 
-  #  posts =
-  #    if params["date_search"] != "" and params["date_search"] != nil do
-  #      posts
-  #        |> where([p], String.contains?(Ecto.DateTime.to_string(p.inserted_at), ^params["date_search"]))
-  #    else
-  #      posts
-  #    end
+      posts =
+        if params["date_sort"] == "asc" do
+           posts
+             |> order_by([p], asc: p.inserted_at)
+        else
+          posts
+        end
 
     posts =
       if params["likes_search"] != "" and params["likes_search"] != nil do
@@ -76,10 +77,17 @@ defmodule Blog.PostController do
       end
 
     posts =
-      if params["ratings_sort"] != "" and params["ratings_sort"] != nil do
-        order = params["ratings_sort"]
-        posts
-          |> order_by([p], desc: p.likes)
+        if params["ratings_sort"] == "desc" do
+         posts
+          |> order_by([p], asc: p.likes)
+        else
+          posts
+        end
+
+    posts =
+          if params["ratings_sort"] == "asc" do
+            posts
+            |> order_by([p], desc: p.likes)
       else
         posts
       end
@@ -127,7 +135,6 @@ defmodule Blog.PostController do
     post_params = Map.put(post_params, "word_count", word_count)
     IO.inspect post_params
     IO.inspect changeset = Post.changeset(%Post{}, post_params)
-
     case Repo.insert(changeset) do
       {:ok, post} ->
         conn
@@ -154,20 +161,31 @@ defmodule Blog.PostController do
 
   def update(conn, %{"id" => id, "post" => post_params}) do
 
-    IO.inspect post_params
+    if Map.get(post_params, "body") != nil do
+      space_count =
+        Map.get(post_params, "body")
+        |> String.trim()
+        |> String.graphemes()
+        |> Enum.dedup_by(fn(x) -> x end)
+        |> Enum.count(fn(x) -> x == " " end)
 
-    space_count =
-      Map.get(post_params, "body")
-      |> String.trim()
-      |> String.graphemes()
-      |> Enum.dedup_by(fn(x) -> x end)
-      |> Enum.count(fn(x) -> x == " " end)
+      word_count = space_count+1
 
-    word_count = space_count+1
-
-    post_params = Map.put(post_params, "word_count", word_count)
+      post_params = Map.put(post_params, "word_count", word_count)
+    end
 
     post = Repo.get!(Post, id)
+
+
+
+    if Map.get(post_params, "likes") != nil do
+      if post.likes == nil do
+        likes = 1
+      else
+        likes = post.likes + 1
+      end
+      post_params = Map.put(post_params, "likes", likes)
+    end
 
     changeset = Post.changeset(post, post_params)
     IO.inspect changeset
