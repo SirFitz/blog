@@ -12,6 +12,7 @@ defmodule Blog.Repo.Migrations.CreatePost do
       add :tags, :string
       add :category, :integer
       add :author, :string
+      add :channel_id, :integer
 
       timestamps()
     end
