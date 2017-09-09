@@ -107,14 +107,14 @@ small {
               <li class"active cyan" ><a href="/posts">More</a></li>
 
               <li class"active cyan" ><a href="/login">Logout</a></li>
-              <li>
-               <a class='dropdown-button bz' href='#' data-activates='notifications-dropdown'><i class="material-icons " >notifications </i></a>
+        <!--      <li>
+               <a class='notif-button bz' href='#' data-activates='notifications-cont'><i class="material-icons " >notifications </i></a>
 
-                        <ul id="notifications-dropdown" class="dropdown-content active" data-constrainwidth="false" >
+                        <ul id="notifications-cont" class="notif-content active" data-constrainwidth="false" >
 
 
                     </ul>
-              </li>
+              </li>-->
               <li>              <i class="material-icons">search</i>
               </li>
               <li>
@@ -150,7 +150,7 @@ small {
         </nav>
       </header>
       <br/>
-      <div class =" containerz">
+      <div class =" container">
       <main role="main">
 
         <%= if  get_flash(@conn, :error) != nil or get_flash(@conn, :info) !=nil do %>
@@ -176,7 +176,7 @@ small {
              success:function(data)
              {
 
-              $('.dropdown-content').html(data.notification);
+              $('.notif-content').html(data.notification);
               if(data.unseen_notification > 0)
               {
 
