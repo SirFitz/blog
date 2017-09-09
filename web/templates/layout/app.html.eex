@@ -91,13 +91,28 @@ $('select').material_select();
     }
 
 
+    .notification-badge {
+    position: relative;
+    right: 5px;
+    top: -20px;
+    color: #ffffff;
+    background-color: #FF4081;
+    margin: 0 -.8em;
+    border-radius: 50%;
+    padding: 4px 5px;
+}
+
+small {
+    font-size: 15px;
+}
+
     </style>
   </head>
 
 
     <div class="">
       <header class="header">
-        <nav role="navigation" style="border-radius:5px;" class="grey z-depth-4" style="color: black;">
+        <nav role="navigation" style="border-radius:5px;" class="teal accent-4 z-depth-4" style="color: black;">
           <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
           <div class="nav-wrapper">
@@ -105,6 +120,35 @@ $('select').material_select();
                 <li> <p  style="font-size: 20px;">Blogify</p> </li>
 
           </ul>
+          <%= if @conn.cookies["bloguser"] do %>
+          <ul class="menu right right hide-on-med-and-down">
+              <li class"active cyan" ><a href="/posts">Home</a></li>
+              <li class"active cyan" ><a href="/users/profile/<%=@conn.cookies["bloguser"]%>">Profile</a></li>
+              <li class"active cyan" ><a href="/channels/view">Channels</a></li>
+
+              <li class"active cyan" ><a href="/posts">Posts</a></li>
+
+              <li class"active cyan" ><a href="/posts">More</a></li>
+
+              <li class"active cyan" ><a href="/login">Logout</a></li>
+        <!--      <li>
+               <a class='notif-button bz' href='#' data-activates='notifications-cont'><i class="material-icons " >notifications </i></a>
+
+                        <ul id="notifications-cont" class="notif-content active" data-constrainwidth="false" >
+
+
+                    </ul>
+              </li>-->
+              <li>              <i class="material-icons">search</i>
+              </li>
+              <li>
+              <input style = "color: white";class="form-control" id="eoFreelancerSearchInput" type="search" name="q" placeholder="Search" data-eo-focus="search.focus">
+            </li>
+
+            </ul>
+           <%end%>
+           <%= unless @conn.cookies["bloguser"] do %>
+
           <ul class="menu right right hide-on-med-and-down">
               <li class"active cyan" ><a href="/posts">Home</a></li>
               <li class"active cyan" ><a href="/posts">About</a></li>
@@ -113,12 +157,13 @@ $('select').material_select();
               <li class"active cyan" ><a href="/posts">Posts</a></li>
               <li class"active cyan" ><a href="/login">Login</a></li>
               <li>              <i class="material-icons">search</i>
- </li>
+              </li>
               <li>
               <input style = "color: white";class="form-control" id="eoFreelancerSearchInput" type="search" name="q" placeholder="Search" data-eo-focus="search.focus">
             </li>
 
             </ul>
+            <%end%>
             <ul class="side-nav" id="mobile-demo">
             <li><a href="sass.html">Sass</a></li>
             <li><a href="badges.html">Components</a></li>
@@ -129,7 +174,7 @@ $('select').material_select();
         </nav>
       </header>
       <br/>
-      <div class =" containerz">
+      <div class ="container">
       <main role="main">
 
         <%= if  get_flash(@conn, :error) != nil or get_flash(@conn, :info) !=nil do %>
@@ -141,5 +186,60 @@ $('select').material_select();
     </div>
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+    <script>
+    $(document).ready(function(){
+
+          function load_unseen_notification(view = '')
+          {
+            $.ajax({
+             url:"/channels/notify",
+             method:"GET",
+             data:{view:view},
+             dataType:"json",
+             success:function(data)
+             {
+
+              $('.notif-content').html(data.notification);
+              if(data.unseen_notification > 0)
+              {
+
+                $('.bz').html('<i class="material-icons " >notifications <small class="notification-badge">5</small>  </i>');
+                notify();
+              }
+             }
+            });
+          }
+
+          load_unseen_notification();
+
+
+          $(document).on('click', '.bz', function(){
+            $('.bz').html('<i class="material-icons " >notifications  </i>');
+            });
+
+          setInterval(function(){
+              load_unseen_notification();
+            }, 1000000);
+
+
+            function notify(view = '')
+            {
+              if(window.Notification && Notification.permission !== "denied") {
+              	Notification.requestPermission(function(status) {  // status is "granted", if accepted by user
+              		var n = new Notification('Blogify', {
+              			body: 'New Notifications! Check them now!',
+              			icon: '/path/to/icon.png' // optional
+              		});
+              	});
+              }
+
+            }
+
+          });
+
+
+    </script>
+
   </body>
 </html>

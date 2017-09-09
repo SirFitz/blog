@@ -3,6 +3,6 @@ defmodule Blog.PageController do
 
   def index(conn, _params) do
     #render conn, "index.html"
-    conn |> redirect(to: "/posts")
+    conn |> redirect(to: "/login")
   end
 end

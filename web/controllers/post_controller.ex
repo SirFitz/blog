@@ -113,7 +113,11 @@ defmodule Blog.PostController do
       |> where([p], is_nil(p.title) == false )
       |> Repo.paginate(params)
 
-    render(conn, "index.html", posts: posts, kerosene: kerosene)
+
+    changeset = Post.changeset(%Post{})
+
+
+    render(conn, "index.html", posts: posts, kerosene: kerosene, changeset: changeset)
   end
 
   def new(conn, _params) do

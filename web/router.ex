@@ -33,6 +33,8 @@ defmodule Blog.Router do
     get "/join/:channel_id", ChannelController, :join
     get "/copy", ChannelController, :copy
 
+    get "/notify", ChannelController, :notify
+
     get "/edit/:id", ChannelController, :edit
     post "/update/:id", ChannelController, :update
     get "/leave/:channel_id/:user_id", ChannelController, :leave

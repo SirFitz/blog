@@ -39,7 +39,7 @@
       <br/>
     </div>
 
-    <div class="input-field col s12">
+<!--    <div class="input-field col s12">
     <select>
       <option value="" disabled selected>Choose your option</option>
       <option value="1">Option 1</option>
@@ -47,7 +47,7 @@
       <option value="3">Option 3</option>
     </select>
     <label>Materialize Select</label>
-  </div>
+  </div> -->
 
   <script>
   $(document).ready(function() {
@@ -77,6 +77,7 @@
         });
       });
     </script>-->
+    <br/>
 
     <div class="input-field col s12 m6">
       <i class="material-icons prefix">mode_edit</i>
@@ -86,7 +87,7 @@
       <br/>
     </div>
 
-    <div class="input-field col s12"
+    <div class="input-field col s12 m3 push s3"
       <span>
         	<%= submit "Submit", class: "submit btn btn-primary waves-effect waves-light cyan" %>
       </span>
