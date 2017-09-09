@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :blog, Blog.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "http", host: "blog.romariofitzgerald.com", port: 443],
+  url: [scheme: "http", host: "unifor.herokuapp.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
@@ -23,8 +23,8 @@ config :blog, Blog.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
 # Do not print debug messages in production
-config :logger, level: :info
 
+config :logger, level: :info
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
