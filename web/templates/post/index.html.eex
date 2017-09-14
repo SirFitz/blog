@@ -27,7 +27,7 @@
     </div>
   </div>
   <%= for post <- @posts do %>
-  <div class="row hoverable card-panel light-blue A100" style="border-radius:5px;">
+  <div class="row hoverable card-panel light-blue A100" >
       <div class="col s12 m3">
         <h5><%= post.title %></h5>
       </div>
