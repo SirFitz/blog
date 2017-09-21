@@ -1,13 +1,14 @@
 
 <div class="container">
 				<div class="row">
-				
+
 
 				      <div class="card card-signup">
 							<form class="form" method="POST" action="/user/create">
 								<div class="header header-primary text-center">
-									<h4>Sign Up</h4>
-									<div class="social-line">
+									  <br/>
+									<h4 class="center" >Sign Up</h4>
+									<div class="social-line text center">
 										<a href="#pablo" class="btn btn-simple btn-just-icon">
 											<i class="fa fa-facebook-square"></i>
 										</a>
@@ -19,8 +20,8 @@
 										</a>
 									</div>
 								</div>
-								<p class="text-divider">Join Us</p>
-								<div class="content">
+								<br/>
+								<div class="content " style="width: 80%; margin: 0 auto;" >
 
 									<div class="input-group">
 										<span class="input-group-addon">
@@ -63,15 +64,17 @@
   								</div>
 
                  -->
+								 <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+
+					       	<div class=" footer text-center" style="margin: 0 auto;">
+					           <button class="btn-large waves-effect waves-light btn btn-simple btn-primary btn-lg" type="submit" name="submit">
+					             CREATE YOUR ACCOUNT &rarr;
+					           </button>
+
+					         </div>
+								 </br>
 								</div>
-                <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
 
-                <div class=" footer text-center">
-                <button class="btn-large waves-effect waves-light btn btn-simple btn-primary btn-lg" type="submit" name="submit">
-                  CREATE YOUR ACCOUNT &rarr;
-                </button>
-
-              </div>
 							</form>
 						</div>
 					</div>
