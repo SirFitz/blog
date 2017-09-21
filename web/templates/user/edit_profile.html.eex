@@ -1,0 +1,95 @@
+<div class=""  >
+  <div class=" card" >
+    <br>
+    <h4 class="center-align">Edit Account Details</h4>
+    <p class="center-align flow-text">
+      Joined: <%= Timex.from_now(NaiveDateTime.to_erl(@user.inserted_at)) %>
+
+    </p>
+
+    <form action="/users/update/<%= @user.zid %>" method="POST" class="col s12">
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input type="text" name="name" class="validate" value="<%=@user.name%>">
+                        <label for="icon_prefix">Name</label>
+                      </div>
+
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">email</i>
+                        <input type="email" name="email" class="validate" value="<%=@user.email%>">
+                        <label for="icon_prefix">Email</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">date_range</i>
+
+                        <input type="text" name="dob" class="validate" placeholder="27-09-1123">
+
+
+                        <label for="icon_prefix">Date of Birth</label>
+                      </div>
+
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">location_on</i>
+                        <input type="text" name="address" class="validate" >
+                        <label for="icon_prefix">Address</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">work</i>
+
+                        <input type="text" name="work" class="validate" >
+
+
+                        <label for="icon_prefix">Work</label>
+                      </div>
+
+                      <div class="input-field col s6">
+
+                        <i class="material-icons prefix">favorite</i>
+                        <input type="text" name="hobbies" class="validate" >
+                        <label for="icon_prefix">Hobbies</label>
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+
+                      <div class="input-field col s6">
+                            <i class="material-icons prefix">lock</i>
+                        <select>
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="1">Private</option>
+                          <option value="2">Public</option>
+                        </select>
+                        <label>Profile Privacy</label>
+                       </div>
+                       <div class="file-field input-field col s6">
+                         <input class="file-path validate" type="text">
+                         <div class="btn">
+                           <input type="file">
+                           <span>Background Image </span>
+
+                         </div>
+                       </div>
+                    </div>
+
+
+
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea id="message5" class="materialize-textarea" length="120"></textarea>
+                        <label for="message">Bio</label>
+                      <span class="character-counter" style="float: right; font-size: 12px; height: 1px;"></span></div>
+
+                    </div>
+                    <br/>
+                    <p class="center-align">
+                      <button class="btn-large" type="submit">SAVE</button>
+                    </p>
+                  </br>
+
+                  </form>

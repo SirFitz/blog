@@ -21,5 +21,9 @@ defmodule Blog.UserController do
     render conn, "profile.html", user: user, mychannels: mychannels, joined_channels: joined_channels
   end
 
+  def edit(conn, params) do
+    user = Repo.get_by(User,  zid: params["zid"])
+    render conn, "edit_profile.html", user: user
+  end
 
 end

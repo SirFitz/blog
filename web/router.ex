@@ -17,6 +17,7 @@ defmodule Blog.Router do
   scope "/users", Blog do
     pipe_through :browser # Use the default browser stack
     get "/profile/:zid", UserController, :profile
+    get "/profile/edit/:zid", UserController, :edit
 
   end
   scope "/channels", Blog do

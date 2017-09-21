@@ -1,70 +1,241 @@
 
 
 <main class=" post-cards" role="main">
-  <div>
-  <h4 style="text-align: center;">  <%= @channel.name %> Channel</h4>
-  </div>
+  <div>  <h4 style="text-align: center;">  <%= @channel.name %> Channel</h4>  </div>
   <%= if @posts ==  nil do %>
   <div style="text-align:center; margin: 0 auto;">
     <h6 style="text-align:center;"> Add posts </h6>
     <a  style="text-align:center; margin: 0 auto;" href ="#myModal"  class="modal-trigger waves-effect waves-light btn center" style="font-size: 12px; width: 15%;" >Create Post Now!</a>
   </div>
   <% else %>
-  <div class="row">
-    <div id="main-feed" class="col s12">
-    <!-- main loop -->
-    <section class="card-panel animated fadeInUpBig" style="animation-delay: 0.75s;"><div class="card-data">
+    <div class="row">
+
+      <div class="col s12 l2">
+        <aside id="recent-posts-2" class="widget widget_recent_entries"><div class="panel panel-warning">		 <div class="panel-heading"><h5 class="panel-title">Top Posts</h5></div>		<ul>
+      					<li>
+      				<a href="https://materialwp.com/scheduled/">Scheduled</a>
+      						</li>
+      					<li>
+      				<a href="https://materialwp.com/tiled-gallery/">Tiled Gallery</a>
+      						</li>
+      					<li>
+      				<a href="https://materialwp.com/twitter-embeds/">Twitter Embeds</a>
+      						</li>
+      					<li>
+      				<a href="https://materialwp.com/featured-image-vertical/">Featured Image (Vertical)</a>
+      						</li>
+      					<li>
+      				<a href="https://materialwp.com/featured-image-horizontal/">Featured Image (Horizontal)</a>
+      						</li>
+      				</ul>
+      		</div></aside>
+
+          <aside id="recent-posts-2" class="widget widget_recent_entries"><div class="panel panel-warning">		 <div class="panel-heading"><h5 class="panel-title">Notices</h5></div>		<ul>
+                  <li>
+                <a href="https://materialwp.com/scheduled/">Scheduled</a>
+                    </li>
+                  <li>
+                <a href="https://materialwp.com/tiled-gallery/">Tiled Gallery</a>
+                    </li>
+                  <li>
+                <a href="https://materialwp.com/twitter-embeds/">Twitter Embeds</a>
+                    </li>
+                  <li>
+                <a href="https://materialwp.com/featured-image-vertical/">Featured Image (Vertical)</a>
+                    </li>
+                  <li>
+                <a href="https://materialwp.com/featured-image-horizontal/">Featured Image (Horizontal)</a>
+                    </li>
+                </ul>
+            </div></aside>
+      </div>
 
 
-      <%= for post <- @posts do %>
-         <time><%=post.inserted_at %></time>
-         <p> By: Jodi-Marie Taylor </p<
+      <div  class="col s12 l10">
+        <!-- main loop -->
+        <div id="profile-page-wall-share" class="row">
+                  <div class="col s12">
+                    <ul class="tabs tab-profile z-depth-1 teal" style="width: 100%;">
+                      <li class="tab col s3" style="width: 33.3333%;"><a class="white-text waves-effect waves-light" href="#UpdateStatus"><i class="mdi-editor-border-color"></i> Quick Status</a>
+                      </li>
+                      <li class="tab col s3" style="width: 33.3333%;"><a class="white-text waves-effect waves-light" href="#AddPhotos"><i class="mdi-image-camera-alt"></i> Filter Posts</a>
+                      </li>
+                      <li class="tab col s3" style="width: 33.3333%;"><a class="white-text waves-effect waves-light active" href="#CreateAlbum"><i class="mdi-image-photo-album"></i> Search</a>
+                      </li>
+                    <div class="indicator" style="right: -1px; left: 226px;"></div></ul>
+                    <!-- UpdateStatus-->
+                    <div id="UpdateStatus" class="tab-content col s12  grey lighten-4" style="display: none;">
+                      <div class="row">
+                        <div class="col s2">
+                          <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image-post">
+                        </div>
+                        <div class="input-field col s10">
+                          <textarea id="textarea" row="2" class="materialize-textarea"></textarea>
+                          <label for="textarea" class="">What's on your mind?</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12 m6 share-icons">
+                          <a href="#"><i class="mdi-image-camera-alt"></i></a>
+                          <a href="#"><i class="mdi-action-account-circle"></i></a>
+                          <a href="#"><i class="mdi-hardware-keyboard-alt"></i></a>
+                          <a href="#"><i class="mdi-communication-location-on"></i></a>
+                        </div>
+                        <div class="col s12 m6 right-align">
+                           <!-- Dropdown Trigger -->
+                            <a class="dropdown-button btn" href="#" data-activates="profliePost"><i class="mdi-action-language"></i> Public</a><ul id="profliePost" class="dropdown-content">
+                              <li><a href="#!"><i class="mdi-action-language"></i> Public</a></li>
+                              <li><a href="#!"><i class="mdi-action-face-unlock"></i> Friends</a></li>
+                              <li><a href="#!"><i class="mdi-action-lock-outline"></i> Only Me</a></li>
+                            </ul>
+
+                            <!-- Dropdown Structure -->
+
+
+                            <a class="waves-effect waves-light btn"><i class="mdi-maps-rate-review left"></i>Post</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- AddPhotos -->
+                    <div id="AddPhotos" class="tab-content col s12  grey lighten-4" style="display: none;">
+                      <div class="row">
+                        <div class="col s2">
+                          <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image-post">
+                        </div>
+                        <div class="input-field col s10">
+                          <textarea id="textarea" row="2" class="materialize-textarea"></textarea>
+                          <label for="textarea" class="">Share your favorites photos!</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12 m6 share-icons">
+                          <a href="#"><i class="mdi-image-camera-alt"></i></a>
+                          <a href="#"><i class="mdi-action-account-circle"></i></a>
+                          <a href="#"><i class="mdi-hardware-keyboard-alt"></i></a>
+                          <a href="#"><i class="mdi-communication-location-on"></i></a>
+                        </div>
+                        <div class="col s12 m6 right-align">
+                           <!-- Dropdown Trigger -->
+                            <a class="dropdown-button btn" href="#" data-activates="profliePost2"><i class="mdi-action-language"></i> Public</a><ul id="profliePost2" class="dropdown-content">
+                              <li><a href="#!"><i class="mdi-action-language"></i> Public</a></li>
+                              <li><a href="#!"><i class="mdi-action-face-unlock"></i> Friends</a></li>
+                              <li><a href="#!"><i class="mdi-action-lock-outline"></i> Only Me</a></li>
+                            </ul>
+
+                            <!-- Dropdown Structure -->
+
+
+                            <a class="waves-effect waves-light btn"><i class="mdi-maps-rate-review left"></i>Post</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- CreateAlbum -->
+                    <div id="CreateAlbum" class="tab-content col s12  grey lighten-4" style="display: block;">
+                      <div class="row">
+                        <div class="col s2">
+                          <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image-post">
+                        </div>
+                        <div class="input-field col s10">
+                          <textarea id="textarea" row="2" class="materialize-textarea"></textarea>
+                          <label for="textarea" class="">Create awesome album.</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12 m6 share-icons">
+                          <a href="#"><i class="mdi-image-camera-alt"></i></a>
+                          <a href="#"><i class="mdi-action-account-circle"></i></a>
+                          <a href="#"><i class="mdi-hardware-keyboard-alt"></i></a>
+                          <a href="#"><i class="mdi-communication-location-on"></i></a>
+                        </div>
+                        <div class="col s12 m6 right-align">
+                           <!-- Dropdown Trigger -->
+                            <a class="dropdown-button btn" href="#" data-activates="profliePost3"><i class="mdi-action-language"></i> Public</a><ul id="profliePost3" class="dropdown-content">
+                              <li><a href="#!"><i class="mdi-action-language"></i> Public</a></li>
+                              <li><a href="#!"><i class="mdi-action-face-unlock"></i> Friends</a></li>
+                              <li><a href="#!"><i class="mdi-action-lock-outline"></i> Only Me</a></li>
+                            </ul>
+
+                            <!-- Dropdown Structure -->
+
+
+                            <a class="waves-effect waves-light btn"><i class="mdi-maps-rate-review left"></i>Post</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+        <section class="card-panel animated fadeInUpBig" style="animation-delay: 0.75s;">
+        <%= for post <- @posts do %>
+
+        <a class='dropdown-button right' href='#' data-activates='dropdown1'>  <i class="material-icons right">more_horiz</i></a>
+
+         <!-- Dropdown Structure -->
+         <ul id='dropdown1' class='dropdown-content'>
+
+           <li><a href="#!">Hide</a></li>
+           <li><a href="#!">Report</a></li>
+
+         </ul>
+        <div class="card-data">
+
+           <time></time>
+           <p> By: Jodi-Marie Taylor </p>
         </div>
         <!-- post wrapper -->
         <article class="post-entry" itemscope="" itemtype="http://schema.org/JobPosting">
           <div class="post-wrap">
-            <header>
-              <h1 class="post-title" itemprop="title">
-                <a href="https://www.jepozz.work/graduate-ux-designer" rel="bookmark" title="Permalink: Graduate UX Designer" class="jobpost-trigger"><%= post.title%></a>
-              </h1>
-            </header>
-            <!-- post content -->
-            <section class="post-content">
+              <header>
+                <h5 class="post-title" itemprop="title">
+                  <a href="https://www.jepozz.work/graduate-ux-designer" rel="bookmark" title="Permalink: Graduate UX Designer" class="jobpost-trigger"><%= post.title%></a>
+                </h5>
+              </header>
+              <!-- post content -->
+              <section class="post-content">
+                  <div class="post-data">
+                    <p></p><p><%= raw post.body%>      <p></p>
+                  </div>
 
-                <div class="post-data">
-                  <p></p><p><%= raw post.body%>      <p></p>
+              </section>
+               <!--! -->
+
+          </div> <!-- ./ post-wrap -->
+
+          <time class="post-time hide-on-med-and-down" datetime="2017-07-04 22:58" pubdate="">
+            <i class="material-icons">schedule</i> <span><%=post.inserted_at %></span>
+             <span itemprop="datePosted" class="hide"><%=post.inserted_at %></span>
+          </time>
+          <br>
+          <div class="card-action row ">
+                  <div class="col s4 card-action-share right">
+                    <a href="#">Like</a> &nbsp
+                    <a href="#">Share</a> &nbsp
+                    <a href="#">Comment</a>
+
+                  </div>
+
+
                 </div>
+        </article>
+        <hr>
+        <%end%>
+        <!-- <div class="widget-banner wb-googleplus hide-on-small-only">
+          <p>Estamos en Google + sumate y seguinos !</p>
+          <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
+        </div> -->
 
-            </section>
-             <!--! -->
-
-      </div> <!-- ./ post-wrap -->
-
-        <time class="post-time hide-on-med-and-down" datetime="2017-07-04 22:58" pubdate="">
-          <i class="material-icons">schedule</i> <span>10:58 pm</span>
-           <span itemprop="datePosted" class="hide">2017-07-04T22:58:13+00:00</span>
-        </time>
-
-      </article>
-      <hr>
-      <%end%>
-
-      <%end%>
+        <!-- <div class="widget-banner wb-facebook hide-on-small-only">
+          <p>Facebook? Dale me gusta a nuestra página oficinal</p>
+          <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
+        </div> -->
+         <!-- -->
+       </section>
+      </div> <!-- ./main feed -->
 
 
-       <!-- <div class="widget-banner wb-googleplus hide-on-small-only">
-         <p>Estamos en Google + sumate y seguinos !</p>
-         <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
-       </div> -->
+     </div>
+  <%end%>
 
-       <!-- <div class="widget-banner wb-facebook hide-on-small-only">
-         <p>Facebook? Dale me gusta a nuestra página oficinal</p>
-         <a href="#" class="wt-dismiss" title="Cerrar"><i class="material-icons">close</i></a>
-       </div> -->
-        <!-- -->
-    </div> <!-- ./main feed -->
-
-    </div>
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
             <a class="btn-floating btn-large green">
               <i class="material-icons">mode_edit</i>
@@ -114,7 +285,7 @@
 
 
                     <div class="input-field col s12 m12">
-                      <i class="material-icons prefix" style="color:black;"">mode_edit</i>
+                      <i class="material-icons prefix" style="color:black;">mode_edit</i>
                       <label style="font-size:20px;" for="body">
                         Content
                       </label>
@@ -138,6 +309,8 @@
               </div>
 
           </div>
+
+
         </div>
 
       </div>
