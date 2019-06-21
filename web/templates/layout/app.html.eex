@@ -162,12 +162,12 @@ form {
            <%end%>
            <%= unless @conn.cookies["bloguser"] do %>
 
-          <ul class="menu right right hide-on-med-and-down">
+          <ul class="menu right right hide-on-med-and-down hot-pink h-100">
               <li class"active cyan" ><a href="/posts">Home</a></li>
-              <li class"active cyan" ><a href="/posts">About</a></li>
-              <li class"active cyan" ><a href="/posts">Help</a></li>
+              <!-- <li class"active cyan" ><a href="/posts">About</a></li> -->
+              <!-- <li class"active cyan" ><a href="/posts">Help</a></li> -->
 
-              <li class"active cyan" ><a href="/posts">Posts</a></li>
+              <!-- <li class"active cyan" ><a href="/posts">Posts</a></li> -->
               <li class"active cyan" ><a href="/login">Login</a></li>
               <li>              <i class="material-icons">search</i>
               </li>
