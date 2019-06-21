@@ -9,3 +9,9 @@
     <span > <%= link "Back", to: post_path(@conn, :index), class: "btn btn-primary pink A400"  %> </span>
   </div>
 </div>
+<!-- <div class="input-field col s6">
+  <span>
+      <%= submit "Submit", class: "submit btn btn-primary waves-effect waves-light cyan" %>
+      <span><%= link "Back", to: post_path(@conn, :index), class: "btn pink A400"%></span>
+  </span>
+</div> -->

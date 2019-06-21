@@ -28,7 +28,7 @@
 
 
         <div class="input-field col s12 m12">
-          <i class="material-icons prefix" style="color:black;"">mode_edit</i>
+          <i class="material-icons prefix" style="color:black;">mode_edit</i>
           <label style="font-size:20px;" for="body">
             Content
           </label>

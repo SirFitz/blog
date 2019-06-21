@@ -1,9 +1,9 @@
 
 <div class="container">
 				<div class="row">
-				
 
-				      <div class="card card-signup">
+
+				      <div class="card card-signup p-3">
 							<form class="form" method="POST" action="/user/create">
 								<div class="header header-primary text-center">
 									<h4>Sign Up</h4>

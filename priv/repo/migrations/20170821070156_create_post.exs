@@ -13,6 +13,7 @@ defmodule Blog.Repo.Migrations.CreatePost do
       add :category, :integer
       add :author, :string
       add :channel_id, :integer
+      add :likes, :integer
 
       timestamps()
     end
